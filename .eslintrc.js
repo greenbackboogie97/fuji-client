@@ -12,5 +12,6 @@ module.exports = {
   rules: {
     'prettier/prettier': 'error',
     'no-use-before-define': 'off',
+    'react/prop-types': 'off',
   },
 };
