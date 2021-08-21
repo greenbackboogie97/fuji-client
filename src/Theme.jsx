@@ -1,9 +1,9 @@
 import React from 'react';
-import { createTheme, MuiThemeProvider } from '@material-ui/core/styles';
+import { createTheme, ThemeProvider } from '@material-ui/core/styles';
 import { CssBaseline } from '@material-ui/core';
 
 const lightPalette = {
-  main: '#8AA3BC',
+  main: '#7cacdc',
   background: '#F0F6FC',
   middle: '#8A949E',
   semi: '#6A6E74',
@@ -11,7 +11,7 @@ const lightPalette = {
 };
 
 const darkPalette = {
-  main: '#8AA3BC',
+  main: '#7cacdc',
   background: '#0D1117',
   middle: '#161B22',
   semi: '#21262D',
@@ -61,8 +61,8 @@ const theme = (mode) =>
 
 export default function Theme({ children }) {
   return (
-    <MuiThemeProvider theme={theme('light')}>
+    <ThemeProvider theme={theme('dark')}>
       <CssBaseline>{children}</CssBaseline>
-    </MuiThemeProvider>
+    </ThemeProvider>
   );
 }
