@@ -2,14 +2,14 @@ import React from 'react';
 import { makeStyles, Container } from '@material-ui/core';
 import { Route } from 'react-router-dom';
 
-import SignIn from '../components/SignIn.jsx';
-import SignUp from '../components/SignUp.jsx';
+import SignIn from '../components/forms/SignIn.jsx';
+import SignUp from '../components/forms/SignUp.jsx';
 
 export default function Welcome() {
   const classes = useStyles();
 
   return (
-    <Container className={classes.root} fluid maxWidth="xs">
+    <Container className={classes.root} fluid="true" maxWidth="xs">
       <Route path="/signin">
         <SignIn />
       </Route>
@@ -24,6 +24,7 @@ const useStyles = makeStyles({
   root: {
     display: 'flex',
     alignItems: 'center',
+    justifyContent: 'center',
     height: '100vh',
   },
 });
