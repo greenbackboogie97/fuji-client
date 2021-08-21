@@ -6,7 +6,7 @@ const lightPalette = {
   main: '#7cacdc',
   background: {
     default: '#F0F6FC',
-    paper: '#F0F6FC',
+    paper: '#FFFF',
   },
   semi: '#6A6E74',
   contrastText: '#0D1117',
@@ -87,7 +87,7 @@ function theme(mode) {
 
 export default function Theme({ children }) {
   return (
-    <ThemeProvider theme={theme('dark')}>
+    <ThemeProvider theme={theme('light')}>
       <CssBaseline>{children}</CssBaseline>
     </ThemeProvider>
   );

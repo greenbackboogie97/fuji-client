@@ -1,12 +1,16 @@
 import React, { useState } from 'react';
-import { Button, makeStyles, Typography } from '@material-ui/core';
 import { useHistory } from 'react-router-dom';
-import FormInput from '../inputs/FormInput.jsx';
+import { useDispatch, useSelector } from 'react-redux';
+import { makeStyles, Button, Tooltip, Typography, CircularProgress } from '@material-ui/core';
 import { ReactComponent as BrandLogo } from '../../static/Fuji.svg';
+import FormInput from '../inputs/FormInput.jsx';
+import { cleanAuthState, signIn } from '../../services/redux/reducers/authReducer';
 
 export default function SignIn() {
   const classes = useStyles();
+  const dispatch = useDispatch();
   const history = useHistory();
+  const authSelector = useSelector((state) => state.auth);
 
   const [form, setForm] = useState({
     email: '',
@@ -16,7 +20,14 @@ export default function SignIn() {
   const handleEmailChange = (e) => setForm((prev) => ({ ...prev, email: e.target.value }));
   const hanldePasswordChange = (e) => setForm((prev) => ({ ...prev, password: e.target.value }));
 
-  const handleSecondaryButtonClick = () => history.push('/signup');
+  const handleSignIn = () => {
+    dispatch(signIn(form));
+  };
+
+  const handleSecondaryButtonClick = () => {
+    dispatch(cleanAuthState());
+    history.push('/signup');
+  };
 
   return (
     <form className={classes.root} autoComplete="off">
@@ -24,15 +35,27 @@ export default function SignIn() {
       <Typography className={classes.heading} variant="h5">
         Sign in to your account
       </Typography>
-      <FormInput label="Email" required onChange={handleEmailChange} value={form.email} />
+      <FormInput label="Email" onChange={handleEmailChange} value={form.email} />
       <FormInput
         label="Password"
         type="password"
-        required
         onChange={hanldePasswordChange}
         value={form.password}
       />
-      <Button className={classes.signInButton}>SIGN IN</Button>
+      <Tooltip
+        open={Boolean(authSelector.error)}
+        title={authSelector.error || ''}
+        placement="bottom"
+        arrow
+      >
+        <Button className={classes.signInButton} onClick={handleSignIn}>
+          {authSelector.status === 'pending' ? (
+            <CircularProgress color="inherit" size={24} />
+          ) : (
+            'SIGN IN'
+          )}
+        </Button>
+      </Tooltip>
       <Button variant="text" color="secondary" onClick={handleSecondaryButtonClick}>
         New to Fuji? Sign Up Here
       </Button>
@@ -57,6 +80,7 @@ const useStyles = makeStyles((theme) => ({
     marginBottom: theme.spacing(4),
   },
   signInButton: {
-    marginBottom: theme.spacing(2),
+    marginTop: theme.spacing(2),
+    marginBottom: theme.spacing(10),
   },
 }));

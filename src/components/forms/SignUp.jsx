@@ -1,12 +1,16 @@
 import React, { useState } from 'react';
-import { Button, makeStyles, Typography } from '@material-ui/core';
+import { Button, CircularProgress, makeStyles, Tooltip, Typography } from '@material-ui/core';
 import { useHistory } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
 import FormInput from '../inputs/FormInput.jsx';
 import { ReactComponent as BrandLogo } from '../../static/Fuji.svg';
+import { cleanAuthState, signUp } from '../../services/redux/reducers/authReducer';
 
 export default function SignUp() {
   const classes = useStyles();
+  const dispatch = useDispatch();
   const history = useHistory();
+  const authSelector = useSelector((state) => state.auth);
 
   const [form, setForm] = useState({
     email: '',
@@ -21,7 +25,12 @@ export default function SignUp() {
   const handleConfirmPasswordChange = (e) =>
     setForm((prev) => ({ ...prev, confirmPassword: e.target.value }));
 
-  const handleSecondaryButtonClick = () => history.push('/signin');
+  const handleSignUp = () => dispatch(signUp(form));
+
+  const handleSecondaryButtonClick = () => {
+    dispatch(cleanAuthState());
+    history.push('/signin');
+  };
 
   return (
     <form className={classes.root} autoComplete="off">
@@ -29,23 +38,34 @@ export default function SignUp() {
       <Typography className={classes.heading} variant="h5">
         Create your account
       </Typography>
-      <FormInput label="Email" required onChange={handleEmailChange} value={form.email} />
-      <FormInput label="Username" required onChange={handleUsernameChange} value={form.username} />
+      <FormInput label="Email" onChange={handleEmailChange} value={form.email} />
+      <FormInput label="Username" onChange={handleUsernameChange} value={form.username} />
       <FormInput
         label="Password"
         type="password"
-        required
         onChange={handlePasswordChange}
         value={form.password}
       />
       <FormInput
         label="Confirm Password"
         type="password"
-        required
         onChange={handleConfirmPasswordChange}
         value={form.confirmPassword}
       />
-      <Button className={classes.signInButton}>SIGN UP</Button>
+      <Tooltip
+        open={Boolean(authSelector.error)}
+        title={`${authSelector.error?.slice(0, 110)}...` || ''}
+        placement="bottom"
+        arrow
+      >
+        <Button className={classes.signInButton} onClick={handleSignUp}>
+          {authSelector.status === 'pending' ? (
+            <CircularProgress color="inherit" size={24} />
+          ) : (
+            'SIGN UP'
+          )}
+        </Button>
+      </Tooltip>
       <Button variant="text" color="secondary" onClick={handleSecondaryButtonClick}>
         Already have an account? Sign in
       </Button>
@@ -70,6 +90,7 @@ const useStyles = makeStyles((theme) => ({
     marginBottom: theme.spacing(4),
   },
   signInButton: {
-    marginBottom: theme.spacing(2),
+    marginTop: theme.spacing(2),
+    marginBottom: theme.spacing(10),
   },
 }));
