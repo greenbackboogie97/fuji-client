@@ -13,5 +13,7 @@ module.exports = {
     'prettier/prettier': 'error',
     'no-use-before-define': 'off',
     'react/prop-types': 'off',
+    'no-param-reassign': 'off',
+    'no-return-assign': 'off',
   },
 };
