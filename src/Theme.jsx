@@ -87,7 +87,7 @@ function theme(mode) {
 
 export default function Theme({ children }) {
   return (
-    <ThemeProvider theme={theme('light')}>
+    <ThemeProvider theme={theme('dark')}>
       <CssBaseline>{children}</CssBaseline>
     </ThemeProvider>
   );
