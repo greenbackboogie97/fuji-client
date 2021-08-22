@@ -1,12 +1,14 @@
 /* eslint-disable no-unused-vars */
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
-import FujiAPI from '../../API/FujiAPI';
+import FujiAPI from '../../../API/FujiAPI';
 
 const initialState = {
   user: null,
   status: 'idle',
   error: null,
 };
+
+// Thunks
 
 export const signIn = createAsyncThunk('auth/signIn', async (payload) => {
   const response = await FujiAPI.users.signIn(payload).catch((error) => {
@@ -22,6 +24,8 @@ export const signUp = createAsyncThunk('auth/signup', async (payload) => {
   return response.data.data;
 });
 
+// Selector
+
 const authReducer = createSlice({
   name: 'auth',
   initialState,
@@ -35,7 +39,7 @@ const authReducer = createSlice({
     [signIn.fulfilled]: (state, action) => {
       state.error = null;
       state.user = action.payload.user;
-      state.status = 'fulfilled';
+      state.status = 'logged';
     },
     [signIn.rejected]: (state, action) => {
       state.error = action.error.message;
@@ -47,7 +51,7 @@ const authReducer = createSlice({
     [signUp.fulfilled]: (state, action) => {
       state.error = null;
       state.user = action.payload.user;
-      state.status = 'fulfilled';
+      state.status = 'logged';
     },
     [signUp.rejected]: (state, action) => {
       state.error = action.error.message;
