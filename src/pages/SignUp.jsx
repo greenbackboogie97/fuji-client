@@ -11,11 +11,11 @@ import { Redirect, useHistory } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import FormInput from '../components/inputs/FormInput.jsx';
 import { ReactComponent as BrandLogo } from '../static/Fuji.svg';
-import { cleanAuthState, signUp } from '../services/redux/reducers/authReducer/authReducer';
+import { cleanAuthState, signUp } from '../services/redux/slices/authSlice/authReducer';
 import {
   authErrorSelector,
   authStatusSelector,
-} from '../services/redux/reducers/authReducer/authSelectors';
+} from '../services/redux/slices/authSlice/authSelectors';
 
 export default function SignUp() {
   const classes = useStyles();
