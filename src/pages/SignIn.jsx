@@ -9,11 +9,11 @@ import {
 } from '@material-ui/core';
 import { Redirect, useHistory } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
-import { cleanAuthState, signIn } from '../services/redux/reducers/authReducer/authReducer';
+import { cleanAuthState, signIn } from '../services/redux/slices/authSlice/authReducer';
 import {
   authErrorSelector,
   authStatusSelector,
-} from '../services/redux/reducers/authReducer/authSelectors';
+} from '../services/redux/slices/authSlice/authSelectors';
 import { ReactComponent as BrandLogo } from '../static/Fuji.svg';
 import FormInput from '../components/inputs/FormInput.jsx';
 
