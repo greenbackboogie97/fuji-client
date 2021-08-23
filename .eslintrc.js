@@ -15,5 +15,6 @@ module.exports = {
     'react/prop-types': 'off',
     'no-param-reassign': 'off',
     'no-return-assign': 'off',
+    'no-underscore-dangle': 'off',
   },
 };

@@ -14,6 +14,9 @@ const FujiAPI = {
     signUp(payload) {
       return FujiAxios.post(`${this.resource}/signup`, payload);
     },
+    changePassword(payload) {
+      return FujiAxios.patch(`${this.resource}/changePassword`, payload);
+    },
   },
 };
 
