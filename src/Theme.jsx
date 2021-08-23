@@ -8,7 +8,7 @@ const lightPalette = {
     default: '#F0F6FC',
     paper: '#FFFF',
   },
-  semi: '#6A6E74',
+  semi: '#BFC2C5',
   contrastText: '#0D1117',
 };
 
@@ -65,12 +65,20 @@ function theme(mode) {
           textTransform: 'none',
         },
       },
+      MuiAppBar: {
+        root: {
+          boxShadow: 'none',
+        },
+      },
     },
     props: {
       MuiButton: {
         disableRipple: true,
         variant: 'contained',
         color: 'primary',
+      },
+      MuiIconButton: {
+        disableRipple: true,
       },
       MuiCheckbox: {
         disableRipple: true,
@@ -81,14 +89,17 @@ function theme(mode) {
           shrink: true,
         },
       },
+      MuiToolbar: {
+        disableGutters: true,
+      },
     },
   });
 }
 
-export default function Theme({ children }) {
+export default function Theme(props) {
   return (
-    <ThemeProvider theme={theme('dark')}>
-      <CssBaseline>{children}</CssBaseline>
+    <ThemeProvider theme={theme(props.type)}>
+      <CssBaseline>{props.children}</CssBaseline>
     </ThemeProvider>
   );
 }
