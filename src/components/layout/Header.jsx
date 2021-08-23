@@ -1,13 +1,30 @@
 import React from 'react';
-import { AppBar, Button, makeStyles, Toolbar } from '@material-ui/core';
+import { AppBar, makeStyles, Toolbar } from '@material-ui/core';
+import { useHistory } from 'react-router-dom';
+import { ReactComponent as BrandLogo } from '../../static/Fuji.svg';
+import ThemeSwitch from '../buttons/ThemeSwitch.jsx';
+import SearchInput from '../inputs/SearchInput.jsx';
+import UserMenuButton from '../buttons/UserMenuButton.jsx';
+import NotificationsButton from '../buttons/NotificationsButton.jsx';
 
 export default function Header() {
   const classes = useStyles();
+  const history = useHistory();
+
+  const handleLogoClick = () => history.push('/');
 
   return (
     <AppBar className={classes.root}>
-      <Toolbar>
-        <Button>abc</Button>
+      <Toolbar className={classes.toolbar} variant="dense">
+        <BrandLogo className={classes.logo} onClick={handleLogoClick} />
+        <div>
+          <SearchInput placeholder="Search Fuji..." />
+        </div>
+        <div className={classes.toolbarRight}>
+          <ThemeSwitch />
+          <NotificationsButton />
+          <UserMenuButton />
+        </div>
       </Toolbar>
     </AppBar>
   );
@@ -16,7 +33,23 @@ export default function Header() {
 const useStyles = makeStyles((theme) => ({
   root: {
     background: theme.palette.primary.background.paper,
-    height: 100,
-    width: 100,
+    borderBottom: `1px solid ${theme.palette.primary.semi}`,
+  },
+  toolbar: {
+    padding: theme.spacing(1),
+  },
+  toolbarRight: {
+    display: 'flex',
+    paddingLeft: '14px',
+    alignItems: 'center',
+    justifyContent: 'flex-end',
+    flex: 1,
+  },
+  logo: {
+    marginRight: theme.spacing(1),
+    cursor: 'pointer',
+    '&:hover': {
+      opacity: 0.75,
+    },
   },
 }));

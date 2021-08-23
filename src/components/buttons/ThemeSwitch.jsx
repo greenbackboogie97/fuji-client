@@ -31,6 +31,7 @@ const ModeSwitch = withStyles((theme) => ({
     padding: 0,
     display: 'flex',
     alignItems: 'center',
+    marginRight: theme.spacing(1),
   },
   track: {
     opacity: 0,
