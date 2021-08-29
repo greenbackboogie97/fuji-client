@@ -18,6 +18,23 @@ const FujiAPI = {
       return FujiAxios.patch(`${this.resource}/changePassword`, payload);
     },
   },
+  chat: {
+    resource: '/chat',
+    getConversations() {
+      return FujiAxios.get(`${this.resource}`);
+    },
+    getConversation(payload) {
+      return FujiAxios.get(`${this.resource}/${payload}`);
+    },
+    getMessages(payload) {
+      return FujiAxios.get(`${this.resource}/${payload}/messages`);
+    },
+    sendMessage(payload) {
+      return FujiAxios.post(`${this.resource}/${payload.conversation}/messages`, {
+        content: payload.content,
+      });
+    },
+  },
 };
 
 export default FujiAPI;

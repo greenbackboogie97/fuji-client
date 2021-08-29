@@ -1,12 +1,14 @@
 import React, { useState } from 'react';
 import { AppBar, Badge, Collapse, IconButton, makeStyles, Toolbar } from '@material-ui/core';
 import { IoIosChatboxes } from 'react-icons/io';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { authStatusSelector } from '../../services/redux/slices/authSlice/authSelectors';
 import Chat from '../chat/Chat.jsx';
+import { cleanChatReducer } from '../../services/redux/slices/chatSlice/chatReducer';
 
 export default function Footer() {
   const classes = useStyles();
+  const dispatch = useDispatch();
   const authStatus = useSelector((state) => authStatusSelector(state));
   const [mount, setMount] = useState();
 
@@ -14,10 +16,12 @@ export default function Footer() {
     setMount(!mount);
   };
 
+  const handleCollapseExit = () => dispatch(cleanChatReducer());
+
   return (
     <>
       <div className={classes.chatBoxContainer}>
-        <Collapse in={mount} unmountOnExit>
+        <Collapse in={mount} unmountOnExit onExiting={handleCollapseExit}>
           <Chat />
         </Collapse>
       </div>
