@@ -23,7 +23,7 @@ const useStyles = makeStyles((theme) => ({
   root: {
     color: theme.palette.primary.contrastText,
     background: theme.palette.primary.background.default,
-    height: '100%',
+    height: '36px',
     width: '100%',
     border: `1px solid ${theme.palette.primary.semi}`,
     borderRadius: '6px',

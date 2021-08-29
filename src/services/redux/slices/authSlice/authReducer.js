@@ -8,8 +8,6 @@ const initialState = {
   error: null,
 };
 
-// Thunks
-
 export const signIn = createAsyncThunk('auth/signIn', async (payload) => {
   const response = await FujiAPI.users.signIn(payload).catch((error) => {
     throw error.response.data;
@@ -23,8 +21,6 @@ export const signUp = createAsyncThunk('auth/signup', async (payload) => {
   });
   return response.data.data;
 });
-
-// Selector
 
 const authReducer = createSlice({
   name: 'auth',

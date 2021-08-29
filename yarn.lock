@@ -4033,6 +4033,11 @@ data-urls@^2.0.0:
     whatwg-mimetype "^2.3.0"
     whatwg-url "^8.0.0"
 
+dayjs@^1.10.6:
+  version "1.10.6"
+  resolved "https://registry.yarnpkg.com/dayjs/-/dayjs-1.10.6.tgz#288b2aa82f2d8418a6c9d4df5898c0737ad02a63"
+  integrity sha512-AztC/IOW4L1Q41A86phW5Thhcrco3xuAA+YX/BLpLWWjRcTj5TOt/QImBLmCKlrF7u7k47arTnOyL6GnbG8Hvw==
+
 debug@2.6.9, debug@^2.2.0, debug@^2.3.3, debug@^2.6.0, debug@^2.6.9:
   version "2.6.9"
   resolved "https://registry.npmjs.org/debug/-/debug-2.6.9.tgz"
@@ -6437,6 +6442,13 @@ istanbul-reports@^3.0.2:
   dependencies:
     html-escaper "^2.0.0"
     istanbul-lib-report "^3.0.0"
+
+javascript-time-ago@^2.3.8:
+  version "2.3.8"
+  resolved "https://registry.yarnpkg.com/javascript-time-ago/-/javascript-time-ago-2.3.8.tgz#7e1cd94a770987cc00db82e60e655d3efdd25629"
+  integrity sha512-ahVSuInQC6iJtwy/XsburOc6JMsI0OI/84b3nAhtMlDhCm9g4Py+zuiPASnt02B4GkaURqWtiyw98ce0ICAZYQ==
+  dependencies:
+    relative-time-format "^1.0.5"
 
 jest-changed-files@^26.6.2:
   version "26.6.2"
@@ -9730,6 +9742,11 @@ relateurl@^0.2.7:
   version "0.2.7"
   resolved "https://registry.npmjs.org/relateurl/-/relateurl-0.2.7.tgz"
   integrity sha1-VNvzd+UUQKypCkzSdGANP/LYiKk=
+
+relative-time-format@^1.0.5:
+  version "1.0.5"
+  resolved "https://registry.yarnpkg.com/relative-time-format/-/relative-time-format-1.0.5.tgz#3fb7c76ae39156afe0a3a7ff0cb7bf30aa0f0fb6"
+  integrity sha512-MAgx/YKcUQYJpIaWcfetPstElnWf26JxVis4PirdwVrrymFdbxyCSm6yENpfB1YuwFbtHSHksN3aBajVNxk10Q==
 
 remove-trailing-separator@^1.0.1:
   version "1.1.0"
