@@ -36,17 +36,17 @@ const useStyles = makeStyles((theme) => ({
     borderBottom: `1px solid ${theme.palette.primary.semi}`,
   },
   toolbar: {
-    padding: theme.spacing(1),
+    padding: theme.spacing(2),
   },
   toolbarRight: {
     display: 'flex',
-    paddingLeft: '14px',
+    paddingLeft: theme.spacing(2),
     alignItems: 'center',
     justifyContent: 'flex-end',
     flex: 1,
   },
   logo: {
-    marginRight: theme.spacing(1),
+    marginRight: theme.spacing(2),
     cursor: 'pointer',
     '&:hover': {
       opacity: 0.75,

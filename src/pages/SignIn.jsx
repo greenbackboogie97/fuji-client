@@ -83,17 +83,17 @@ const useStyles = makeStyles((theme) => ({
     border: `1px solid ${theme.palette.primary.semi}`,
     borderRadius: theme.shape.borderRadius,
     backgroundColor: theme.palette.primary.background.paper,
-    padding: theme.spacing(4),
+    padding: theme.spacing(8),
   },
   logo: {
-    marginBottom: theme.spacing(2),
+    marginBottom: theme.spacing(4),
   },
   heading: {
     textAlign: 'center',
-    marginBottom: theme.spacing(4),
+    marginBottom: theme.spacing(8),
   },
   signInButton: {
-    marginTop: theme.spacing(2),
-    marginBottom: theme.spacing(10),
+    marginTop: theme.spacing(4),
+    marginBottom: theme.spacing(20),
   },
 }));
