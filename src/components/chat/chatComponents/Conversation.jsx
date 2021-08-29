@@ -8,7 +8,7 @@ import {
   chatActiveConversationSelector,
   chatFetchedMessagesSelector,
 } from '../../../services/redux/slices/chatSlice/chatSelectors';
-import setTime from '../../../services/timeFormating';
+import setTime from '../../../services/util/timeFormating';
 import CommentInput from '../../inputs/CommentInput.jsx';
 import Message from './Message.jsx';
 import UserMessage from './UserMessage.jsx';
