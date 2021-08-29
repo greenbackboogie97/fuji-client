@@ -1,8 +1,8 @@
 import React from 'react';
 import { makeStyles } from '@material-ui/core';
 import { useSelector } from 'react-redux';
-import ControlBar from './components/ControlBar.jsx';
-import Conversation from './components/Conversation.jsx';
+import ControlBar from './chatComponents/ControlBar.jsx';
+import Conversation from './chatComponents/Conversation.jsx';
 import { chatActiveConversationSelector } from '../../services/redux/slices/chatSlice/chatSelectors';
 import {} from '../../services/redux/slices/chatSlice/chatReducer';
 
