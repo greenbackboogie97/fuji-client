@@ -29,6 +29,7 @@ function theme(mode) {
       primary: mode === 'light' ? lightPalette : darkPalette,
       secondary: {
         main: '#BC012D',
+        connected: '#00cc66',
       },
     },
     typography: {
@@ -52,9 +53,13 @@ function theme(mode) {
         fontWeight: 600,
       },
     },
+    spacing: 4,
     overrides: {
       MuiCssBaseline: {
         '@global': {
+          '*::-webkit-scrollbar': {
+            display: 'none',
+          },
           '#root': {
             backgroundColor: mode === 'dark' ? '#0D1117' : '#F7F9FC',
           },

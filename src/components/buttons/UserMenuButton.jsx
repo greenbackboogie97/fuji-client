@@ -5,6 +5,7 @@ import { useHistory } from 'react-router-dom';
 import { authUserSelector } from '../../services/redux/slices/authSlice/authSelectors';
 import { cleanAuthState } from '../../services/redux/slices/authSlice/authReducer';
 import ChangePassword from '../forms/ChangePassword.jsx';
+import { cleanChatReducer } from '../../services/redux/slices/chatSlice/chatReducer';
 
 export default function UserMenuButton() {
   const classes = useStyles();
@@ -27,6 +28,7 @@ export default function UserMenuButton() {
   const handleSignOutClick = () => {
     handleClose();
     dispatch(cleanAuthState());
+    dispatch(cleanChatReducer());
   };
 
   return (
