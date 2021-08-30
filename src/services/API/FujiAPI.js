@@ -14,8 +14,29 @@ const FujiAPI = {
     signUp(payload) {
       return FujiAxios.post(`${this.resource}/signup`, payload);
     },
+    editUser(payload) {
+      return FujiAxios.patch(`${this.resource}`, payload);
+    },
     changePassword(payload) {
       return FujiAxios.patch(`${this.resource}/changePassword`, payload);
+    },
+  },
+  feed: {
+    resource: '/posts',
+    getPosts(payload) {
+      return FujiAxios.get(`${this.resource}/${payload}`);
+    },
+    publishPost(payload) {
+      return FujiAxios.post(`${this.resource}`, payload);
+    },
+  },
+  media: {
+    resource: '/media',
+    uploadMedia(payload) {
+      return FujiAxios.post(`${this.resource}`, payload);
+    },
+    getMedia(payload) {
+      return FujiAxios.get(`${this.resource}/${payload}`);
     },
   },
   chat: {
