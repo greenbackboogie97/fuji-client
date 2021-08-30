@@ -58,7 +58,11 @@ function theme(mode) {
       MuiCssBaseline: {
         '@global': {
           '*::-webkit-scrollbar': {
-            display: 'none',
+            width: 4,
+          },
+          '*::-webkit-scrollbar-thumb': {
+            background: '#7cacdc',
+            borderRadius: 4,
           },
           '#root': {
             backgroundColor: mode === 'dark' ? '#0D1117' : '#F7F9FC',

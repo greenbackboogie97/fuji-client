@@ -8,7 +8,7 @@ import {
   chatActiveConversationSelector,
   chatFetchedMessagesSelector,
 } from '../../../services/redux/slices/chatSlice/chatSelectors';
-import setTime from '../../../services/util/timeFormating';
+import setTime from '../../../util/timeFormating';
 import CommentInput from '../../inputs/CommentInput.jsx';
 import Message from './Message.jsx';
 import UserMessage from './UserMessage.jsx';
@@ -84,14 +84,6 @@ const useStyles = makeStyles((theme) => ({
     height: 'calc(50vh - 102px)',
     padding: theme.spacing(2),
     overflow: 'auto',
-    '&::-webkit-scrollbar': {
-      display: 'block',
-      width: theme.spacing(1),
-    },
-    '&::-webkit-scrollbar-thumb': {
-      background: theme.palette.secondary.main,
-      borderRadius: theme.shape.borderRadius,
-    },
   },
   conversationInput: {
     display: 'flex',

@@ -29,7 +29,7 @@ const useStyles = makeStyles((theme) => ({
     width: 'fit-content',
     maxWidth: '85%',
     border: `1px solid ${theme.palette.primary.semi}`,
-    background: theme.palette.primary.main,
+    background: theme.palette.primary.light,
     borderRadius: theme.shape.borderRadius,
     padding: theme.spacing(2),
     marginBottom: theme.spacing(4),
