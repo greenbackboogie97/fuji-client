@@ -84,6 +84,14 @@ const useStyles = makeStyles((theme) => ({
     height: 'calc(50vh - 102px)',
     padding: theme.spacing(2),
     overflow: 'auto',
+    '&::-webkit-scrollbar': {
+      display: 'block',
+      width: theme.spacing(1),
+    },
+    '&::-webkit-scrollbar-thumb': {
+      background: '#7cacdc',
+      borderRadius: theme.shape.borderRadius,
+    },
   },
   conversationInput: {
     display: 'flex',

@@ -58,11 +58,7 @@ function theme(mode) {
       MuiCssBaseline: {
         '@global': {
           '*::-webkit-scrollbar': {
-            width: 4,
-          },
-          '*::-webkit-scrollbar-thumb': {
-            background: '#7cacdc',
-            borderRadius: 4,
+            display: 'none',
           },
           '#root': {
             backgroundColor: mode === 'dark' ? '#0D1117' : '#F7F9FC',
@@ -88,6 +84,7 @@ function theme(mode) {
       },
       MuiIconButton: {
         disableRipple: true,
+        color: 'default',
       },
       MuiCheckbox: {
         disableRipple: true,

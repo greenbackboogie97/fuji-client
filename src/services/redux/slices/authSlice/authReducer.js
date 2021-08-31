@@ -22,6 +22,13 @@ export const signUp = createAsyncThunk('auth/signup', async (payload) => {
   return response.data.data;
 });
 
+export const editUser = createAsyncThunk('auth/editUser', async ({ key, value }) => {
+  const response = await FujiAPI.editUser({ [key]: value }).catch((error) => {
+    throw error.response.data;
+  });
+  return response.data.data;
+});
+
 const authReducer = createSlice({
   name: 'auth',
   initialState,
@@ -52,6 +59,9 @@ const authReducer = createSlice({
     [signUp.rejected]: (state, action) => {
       state.error = action.error.message;
       state.status = 'rejected';
+    },
+    [editUser.fulfilled]: (state, action) => {
+      state.user[action.meta.arg.key] = action.meta.arg.value;
     },
   },
 });

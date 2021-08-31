@@ -2,7 +2,7 @@ import React from 'react';
 import { Button, Divider, Grid, makeStyles } from '@material-ui/core';
 import { useDispatch, useSelector } from 'react-redux';
 import { setFeed } from '../../../services/redux/slices/feedSlice/feedReducer';
-import currentFeedSelector from '../../../services/redux/slices/feedSlice/feedSelectors';
+import { currentFeedSelector } from '../../../services/redux/slices/feedSlice/feedSelectors';
 
 export default function FeedControl() {
   const classes = useStyles();
@@ -18,6 +18,7 @@ export default function FeedControl() {
     <Grid className={classes.root} item xs={12} sm={10} md={9} lg={8} xl={7}>
       <Button
         className={classes.btn}
+        color="default"
         onClick={() => handleFeedClick('friends')}
         variant="text"
         style={currentFeed !== 'friends' ? { opacity: 0.5 } : null}
@@ -26,6 +27,7 @@ export default function FeedControl() {
       </Button>
       <Button
         className={classes.btn}
+        color="default"
         onClick={() => handleFeedClick('community')}
         variant="text"
         style={currentFeed !== 'community' ? { opacity: 0.5 } : null}
@@ -49,6 +51,7 @@ const useStyles = makeStyles((theme) => ({
     borderRight: `1px solid ${theme.palette.primary.semi}`,
     borderBottomLeftRadius: 'unset',
     borderBottomRightRadius: 'unset',
+    transition: 'unset',
   },
   divider: {
     background: theme.palette.primary.semi,
