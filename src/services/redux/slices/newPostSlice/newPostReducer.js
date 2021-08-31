@@ -7,7 +7,7 @@ const initialState = {
 };
 
 export const publishPost = createAsyncThunk('newPost/publishPost', async (payload) => {
-  const response = await FujiAPI.publishPost(payload).catch((error) => {
+  const response = await FujiAPI.feed.publishPost(payload).catch((error) => {
     throw error.response.data;
   });
   return response.data.data;

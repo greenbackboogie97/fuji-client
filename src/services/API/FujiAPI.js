@@ -29,6 +29,21 @@ const FujiAPI = {
     publishPost(payload) {
       return FujiAxios.post(`${this.resource}`, payload);
     },
+    deletePost(payload) {
+      return FujiAxios.delete(`${this.resource}/${payload}`);
+    },
+    getComments(payload) {
+      return FujiAxios.get(`${this.resource}/${payload}/comment`);
+    },
+    addComment(payload) {
+      return FujiAxios.post(`${this.resource}/${payload.id}`, { content: payload.content });
+    },
+    addLike(payload) {
+      return FujiAxios.post(`${this.resource}/${payload}/like`, {});
+    },
+    removeLike(payload) {
+      return FujiAxios.delete(`${this.resource}/${payload}/like`);
+    },
   },
   media: {
     resource: '/media',
