@@ -13,7 +13,10 @@ export default function PostSocialBar(props) {
   };
 
   return (
-    <CardActions className={classes.root}>
+    <CardActions
+      className={classes.root}
+      style={props.commentsExpanded ? { marginBottom: 12 } : null}
+    >
       <Badge className={classes.badge} badgeContent={props.likesCount} color="primary">
         <Checkbox
           onClick={onLikeClick}
@@ -34,7 +37,7 @@ export default function PostSocialBar(props) {
 
 const useStyles = makeStyles((theme) => ({
   root: {
-    padding: theme.spacing(3),
+    padding: 0,
   },
   badge: {
     marginRight: theme.spacing(5),

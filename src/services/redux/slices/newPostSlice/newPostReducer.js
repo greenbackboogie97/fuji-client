@@ -30,7 +30,7 @@ const newPostReducer = createSlice({
       state.status = 'pending';
     },
     [publishPost.fulfilled]: (state) => {
-      state.status = 'fulfilled';
+      state.status = 'success';
       state.media = [];
     },
     [publishPost.rejected]: (state, action) => {

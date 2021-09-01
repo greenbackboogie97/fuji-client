@@ -39,11 +39,11 @@ const feedReducer = createSlice({
     },
     addLike: (state, action) => {
       const post = state.posts.posts.find((el) => el._id === action.payload.postID);
-      post.likes.push(action.payload.user);
+      post.likes.push(action.payload.authUser);
     },
     removeLike: (state, action) => {
       const post = state.posts.posts.find((el) => el._id === action.payload.postID);
-      const likeIndex = post.likes.findIndex((el) => el._id === action.payload.user._id);
+      const likeIndex = post.likes.findIndex((el) => el._id === action.payload.authUser._id);
       post.likes.splice(likeIndex, 1);
     },
     cleanFeedReducer: (state) => {

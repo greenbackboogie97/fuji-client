@@ -1,5 +1,4 @@
-/* eslint-disable no-unused-vars */
-import React, { useEffect } from 'react';
+import React, { useEffect, useMemo } from 'react';
 import { Redirect } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { makeStyles } from '@material-ui/core';
@@ -12,23 +11,24 @@ import NewPost from '../components/feed/feedComponents/NewPost.jsx';
 import {
   currentFeedSelector,
   feedPostsSelector,
-  feedStatusSelector,
 } from '../services/redux/slices/feedSlice/feedSelectors';
 import { getPosts } from '../services/redux/slices/feedSlice/feedReducer';
 import Post from '../components/post/Post.jsx';
+import { newPostStatusSelector } from '../services/redux/slices/newPostSlice/newPostSelectors';
 
 export default function Home() {
   const classes = useStyles();
   const dispatch = useDispatch();
   const authStatus = useSelector((state) => authStatusSelector(state));
   const currentFeed = useSelector((state) => currentFeedSelector(state));
-  const feedStatus = useSelector((state) => feedStatusSelector(state));
   const feedPosts = useSelector((state) => feedPostsSelector(state));
+  const newPostStatus = useSelector((state) => newPostStatusSelector(state));
+  const newPostMemo = useMemo(() => newPostStatus === 'success', [newPostStatus]);
 
   useEffect(() => {
     if (!currentFeed) return;
     dispatch(getPosts(currentFeed));
-  }, [currentFeed, dispatch]);
+  }, [currentFeed, newPostMemo, dispatch]);
 
   return authStatus === 'logged' ? (
     <div className={classes.root}>

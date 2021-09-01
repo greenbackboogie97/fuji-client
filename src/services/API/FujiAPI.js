@@ -36,7 +36,7 @@ const FujiAPI = {
       return FujiAxios.get(`${this.resource}/${payload}/comment`);
     },
     addComment(payload) {
-      return FujiAxios.post(`${this.resource}/${payload.id}`, { content: payload.content });
+      return FujiAxios.post(`${this.resource}/${payload.id}/comment`, { content: payload.content });
     },
     addLike(payload) {
       return FujiAxios.post(`${this.resource}/${payload}/like`, {});

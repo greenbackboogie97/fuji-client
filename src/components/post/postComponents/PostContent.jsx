@@ -1,6 +1,6 @@
 import React from 'react';
 import { makeStyles, CardContent, Typography } from '@material-ui/core';
-import MediaCarousel from '../../media/mediaComponents/MediaCarousel.jsx';
+import MediaCarousel from '../../layout/MediaCarousel.jsx';
 
 export default function PostContent(props) {
   const classes = useStyles();
