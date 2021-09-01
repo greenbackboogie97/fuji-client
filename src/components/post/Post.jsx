@@ -1,11 +1,10 @@
 import React, { useState } from 'react';
-import { Grid, Card, Collapse, makeStyles } from '@material-ui/core';
+import { Grid, Card, Collapse, makeStyles, List } from '@material-ui/core';
 import { useDispatch, useSelector } from 'react-redux';
 import PostHeader from './postComponents/PostHeader.jsx';
 import PostContent from './postComponents/PostContent.jsx';
 import PostSocialBar from './postComponents/PostSocialBar.jsx';
 import CommentInput from '../inputs/CommentInput.jsx';
-import PostComments from './postComponents/PostComments.jsx';
 import PostComment from './postComponents/PostComment.jsx';
 import setTime from '../../util/timeFormating';
 import { addComment, addLike, removeLike } from '../../services/redux/slices/feedSlice/feedReducer';
@@ -71,6 +70,7 @@ export default function Post(props) {
           onLikeClick={handleLikeClick}
           commentsCount={comments.length}
           onCommentClick={handleCommentClick}
+          commentsExpanded={expanded}
         />
         <Collapse in={expanded} unmountOnExit>
           <CommentInput
@@ -79,7 +79,7 @@ export default function Post(props) {
             status={commentSubmitStatus}
           />
           {!!comments.length && commentsStatus !== 'loading' && (
-            <PostComments>
+            <List className={classes.comments}>
               {comments.map((comment) => {
                 return (
                   comment.author && (
@@ -94,7 +94,7 @@ export default function Post(props) {
                   )
                 );
               })}
-            </PostComments>
+            </List>
           )}
         </Collapse>
       </Card>
@@ -105,10 +105,13 @@ export default function Post(props) {
 const useStyles = makeStyles((theme) => ({
   root: {
     background: theme.palette.primary.background.paper,
-    padding: theme.spacing(3),
+    padding: theme.spacing(4),
     marginBottom: theme.spacing(5),
     border: `1px solid ${theme.palette.primary.semi}`,
     borderRadius: theme.shape.borderRadius,
     boxShadow: 'unset',
+  },
+  comments: {
+    marginTop: theme.spacing(3),
   },
 }));

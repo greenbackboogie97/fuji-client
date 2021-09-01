@@ -73,7 +73,7 @@ export default function PostHeader(props) {
 
 const useStyles = makeStyles((theme) => ({
   root: {
-    padding: theme.spacing(3),
+    padding: 0,
     color: theme.palette.primary.contrastText,
   },
   more: {
