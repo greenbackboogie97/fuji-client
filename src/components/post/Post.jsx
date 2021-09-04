@@ -53,52 +53,54 @@ export default function Post(props) {
   };
 
   return (
-    <Grid item xs={12} sm={10} md={9} lg={8} xl={7}>
-      <Card className={classes.root}>
-        <PostHeader
-          avatar={currentPost.author.profilePicture}
-          username={currentPost.author.name}
-          time={setTime(currentPost.createdAt)}
-          action={currentPost.author._id === authUser._id}
-          postID={currentPost._id}
-          authorID={currentPost.author._id}
-        />
-        <PostContent content={currentPost.content} media={currentPost.media} />
-        <PostSocialBar
-          liked={liked}
-          likesCount={currentPost.likes.length}
-          onLikeClick={handleLikeClick}
-          commentsCount={comments.length}
-          onCommentClick={handleCommentClick}
-          commentsExpanded={expanded}
-        />
-        <Collapse in={expanded} unmountOnExit>
-          <CommentInput
-            onSubmit={(value) => handleCommentSubmit(value)}
-            placeholder="Write a comment..."
-            status={commentSubmitStatus}
+    currentPost && (
+      <Grid item xs={12} sm={10} md={9} lg={8} xl={7}>
+        <Card className={classes.root}>
+          <PostHeader
+            avatar={currentPost.author.profilePicture}
+            username={currentPost.author.name}
+            time={setTime(currentPost.createdAt)}
+            action={currentPost.author._id === authUser._id}
+            postID={currentPost._id}
+            authorID={currentPost.author._id}
           />
-          {!!comments.length && commentsStatus !== 'loading' && (
-            <List className={classes.comments}>
-              {comments.map((comment) => {
-                return (
-                  comment.author && (
-                    <PostComment
-                      key={comment._id}
-                      authorID={comment.author._id}
-                      avatar={comment.author.profilePicture}
-                      username={comment.author.name}
-                      content={comment.content}
-                      time={setTime(comment.createdAt)}
-                    />
-                  )
-                );
-              })}
-            </List>
-          )}
-        </Collapse>
-      </Card>
-    </Grid>
+          <PostContent content={currentPost.content} media={currentPost.media} />
+          <PostSocialBar
+            liked={liked}
+            likesCount={currentPost.likes.length}
+            onLikeClick={handleLikeClick}
+            commentsCount={comments.length}
+            onCommentClick={handleCommentClick}
+            commentsExpanded={expanded}
+          />
+          <Collapse in={expanded} unmountOnExit>
+            <CommentInput
+              onSubmit={(value) => handleCommentSubmit(value)}
+              placeholder="Write a comment..."
+              status={commentSubmitStatus}
+            />
+            {!!comments.length && commentsStatus !== 'loading' && (
+              <List className={classes.comments}>
+                {comments.map((comment) => {
+                  return (
+                    comment.author && (
+                      <PostComment
+                        key={comment._id}
+                        authorID={comment.author._id}
+                        avatar={comment.author.profilePicture}
+                        username={comment.author.name}
+                        content={comment.content}
+                        time={setTime(comment.createdAt)}
+                      />
+                    )
+                  );
+                })}
+              </List>
+            )}
+          </Collapse>
+        </Card>
+      </Grid>
+    )
   );
 }
 

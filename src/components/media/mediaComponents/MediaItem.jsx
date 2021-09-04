@@ -42,8 +42,8 @@ export default function MediaItem(props) {
             />
           )}
           {props.profilePictureSelect && (
-            <Button className={classes.use} onClick={handleProfilePictureSelect}>
-              use as profile picture
+            <Button color="primary" onClick={handleProfilePictureSelect}>
+              Set Profile Picture
             </Button>
           )}
         </div>
@@ -87,11 +87,5 @@ const useStyles = makeStyles((theme) => ({
   },
   checkbox: {
     padding: 0,
-  },
-  use: {
-    color: theme.palette.secondary.main,
-    '&:hover': {
-      background: theme.palette.primary.middle,
-    },
   },
 }));

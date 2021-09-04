@@ -5,22 +5,21 @@ import { IoIosNotifications } from 'react-icons/io';
 export default function NotificationsButton() {
   const classes = useStyles();
   return (
-    <IconButton className={classes.root}>
-      <Badge badgeContent={9} color="primary">
-        <IoIosNotifications className={classes.icon} />
-      </Badge>
-    </IconButton>
+    <Badge badgeContent={9} color="primary" className={classes.root}>
+      <IconButton className={classes.icon}>
+        <IoIosNotifications />
+      </IconButton>
+    </Badge>
   );
 }
 
 const useStyles = makeStyles((theme) => ({
   root: {
-    margin: theme.spacing(1),
-    padding: 4,
+    margin: theme.spacing(2),
+    // padding: theme.spacing(1),
   },
   icon: {
     padding: 0,
-    fontSize: '26px',
     color: theme.palette.primary.contrastText,
   },
 }));

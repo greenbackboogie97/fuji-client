@@ -38,8 +38,7 @@ const ModeSwitch = withStyles((theme) => ({
   },
   switchBase: {
     color: theme.palette.primary.contrastText,
-    fontSize: 26,
-    padding: 3,
+    padding: theme.spacing(1),
     '&.Mui-checked': {
       color: theme.palette.primary.contrastText,
       transform: 'translateX(0px)',
