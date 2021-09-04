@@ -14,6 +14,9 @@ const FujiAPI = {
     signUp(payload) {
       return FujiAxios.post(`${this.resource}/signup`, payload);
     },
+    getUser(payload) {
+      return FujiAxios.get(`${this.resource}/${payload}`);
+    },
     editUser(payload) {
       return FujiAxios.patch(`${this.resource}`, payload);
     },
@@ -43,6 +46,18 @@ const FujiAPI = {
     },
     removeLike(payload) {
       return FujiAxios.delete(`${this.resource}/${payload}/like`);
+    },
+  },
+  friends: {
+    resource: '/friends',
+    getFriends(payload) {
+      return FujiAxios.get(`${this.resource}/${payload}`);
+    },
+    addFriend(payload) {
+      return FujiAxios.patch(`${this.resource}/${payload}`, {});
+    },
+    removeFriend(payload) {
+      return FujiAxios.delete(`${this.resource}/${payload}`);
     },
   },
   media: {
