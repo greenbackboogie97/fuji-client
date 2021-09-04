@@ -36,7 +36,7 @@ const useStyles = makeStyles((theme) => ({
     borderBottom: `1px solid ${theme.palette.primary.semi}`,
   },
   toolbar: {
-    padding: theme.spacing(2),
+    padding: `0 ${theme.spacing(2)}px`,
   },
   toolbarRight: {
     display: 'flex',

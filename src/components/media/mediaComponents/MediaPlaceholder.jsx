@@ -18,7 +18,6 @@ const useStyles = makeStyles((theme) => ({
     alignItems: 'center',
   },
   text: {
-    fontFamily: 'Inter',
     fontWeight: '600',
     fontSize: '15px',
     color: theme.palette.secondary.semi,

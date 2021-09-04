@@ -54,11 +54,11 @@ export default function UserMenuButton() {
 
 const useStyles = makeStyles((theme) => ({
   root: {
-    padding: theme.spacing(1),
+    padding: theme.spacing(0),
   },
   avatar: {
     cursor: 'pointer',
-    height: '26px',
-    width: '26px',
+    height: '24px',
+    width: '24px',
   },
 }));
