@@ -23,7 +23,7 @@ export const signUp = createAsyncThunk('auth/signup', async (payload) => {
 });
 
 export const editUser = createAsyncThunk('auth/editUser', async ({ key, value }) => {
-  const response = await FujiAPI.editUser({ [key]: value }).catch((error) => {
+  const response = await FujiAPI.users.editUser({ [key]: value }).catch((error) => {
     throw error.response.data;
   });
   return response.data.data;

@@ -1,11 +1,12 @@
 import React from 'react';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import { useSelector } from 'react-redux';
-import Home from './pages/Home.jsx';
+import { themeTypeSelector } from './services/redux/slices/themeSlice/themeSelectors';
 import Theme from './Theme.jsx';
 import SignIn from './pages/SignIn.jsx';
 import SignUp from './pages/SignUp.jsx';
-import { themeTypeSelector } from './services/redux/slices/themeSlice/themeSelectors';
+import Home from './pages/Home.jsx';
+import Profile from './pages/Profile.jsx';
 
 export default function App() {
   const themeType = useSelector((state) => themeTypeSelector(state));
@@ -22,6 +23,9 @@ export default function App() {
           </Route>
           <Route exact path="/">
             <Home />
+          </Route>
+          <Route exact path="/profile/:id">
+            <Profile />
           </Route>
         </Switch>
       </Theme>
