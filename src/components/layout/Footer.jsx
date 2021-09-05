@@ -52,6 +52,7 @@ const useStyles = makeStyles((theme) => ({
     borderTop: `1px solid ${theme.palette.primary.semi}`,
     background: theme.palette.primary.background.paper,
     backdropFilter: 'blur(10px)',
+    padding: `0 ${theme.spacing(2)}px`,
   },
   chatToggle: {
     padding: theme.spacing(1),

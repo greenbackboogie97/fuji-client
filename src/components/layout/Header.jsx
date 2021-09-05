@@ -5,7 +5,6 @@ import { ReactComponent as BrandLogo } from '../../static/Fuji.svg';
 import ThemeSwitch from '../buttons/ThemeSwitch.jsx';
 import SearchInput from '../inputs/SearchInput.jsx';
 import UserMenuButton from '../buttons/UserMenuButton.jsx';
-import NotificationsButton from '../buttons/NotificationsButton.jsx';
 
 export default function Header() {
   const classes = useStyles();
@@ -22,7 +21,6 @@ export default function Header() {
         </div>
         <div className={classes.toolbarRight}>
           <ThemeSwitch />
-          <NotificationsButton />
           <UserMenuButton />
         </div>
       </Toolbar>

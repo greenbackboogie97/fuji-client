@@ -50,7 +50,7 @@ export default function NewPost() {
           onChange={handleValueChange}
           type="text"
           multiline={true}
-          rowsMax={10}
+          maxRows={10}
           placeholder="Share what's on your mind.."
           endAdornment={
             <IconButton className={classes.media} onClick={handleMediaOpen}>
