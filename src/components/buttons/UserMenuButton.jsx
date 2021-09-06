@@ -5,7 +5,9 @@ import { useHistory } from 'react-router-dom';
 import { authUserSelector } from '../../services/redux/slices/authSlice/authSelectors';
 import { cleanAuthState } from '../../services/redux/slices/authSlice/authReducer';
 import ChangePassword from '../forms/ChangePassword.jsx';
-import { cleanChatReducer } from '../../services/redux/slices/chatSlice/chatReducer';
+import { cleanChatState } from '../../services/redux/slices/chatSlice/chatReducer';
+import { cleanFeedState } from '../../services/redux/slices/feedSlice/feedReducer';
+import { cleanProfileState } from '../../services/redux/slices/profileSlice/profileReducer';
 
 export default function UserMenuButton() {
   const classes = useStyles();
@@ -28,7 +30,9 @@ export default function UserMenuButton() {
   const handleSignOutClick = () => {
     handleClose();
     dispatch(cleanAuthState());
-    dispatch(cleanChatReducer());
+    dispatch(cleanChatState());
+    dispatch(cleanFeedState());
+    dispatch(cleanProfileState());
   };
 
   return (

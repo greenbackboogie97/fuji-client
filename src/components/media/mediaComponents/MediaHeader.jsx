@@ -8,7 +8,7 @@ export default function MediaHeader() {
   return (
     <>
       <div className={classes.root}>
-        <Logo />
+        <Logo fill="currentColor" />
       </div>
       <Divider />
     </>

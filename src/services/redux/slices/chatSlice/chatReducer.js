@@ -47,7 +47,7 @@ const chatReducer = createSlice({
   name: 'chat',
   initialState,
   reducers: {
-    cleanChatReducer: (state) => (state = initialState),
+    cleanChatState: (state) => (state = initialState),
   },
   extraReducers: {
     [getConversations.pending]: (state) => {
@@ -87,4 +87,4 @@ const chatReducer = createSlice({
 });
 
 export default chatReducer.reducer;
-export const { cleanChatReducer, cleanActiveConversation } = chatReducer.actions;
+export const { cleanChatState, cleanActiveConversation } = chatReducer.actions;
