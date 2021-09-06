@@ -8,7 +8,6 @@ import {
   chatActiveConversationSelector,
   chatFetchedMessagesSelector,
 } from '../../../services/redux/slices/chatSlice/chatSelectors';
-import setTime from '../../../util/timeFormating';
 import CommentInput from '../../inputs/CommentInput.jsx';
 import Message from './Message.jsx';
 import UserMessage from './UserMessage.jsx';
@@ -40,14 +39,14 @@ export default function Conversation() {
         <div className={classes.conversationContent} ref={messagesContainerRef}>
           {chatFetchedMessages.messages.map((message) => {
             if (message.author._id === authUser._id) {
-              return <UserMessage content={message.content} time={setTime(message.sentAt)} />;
+              return <UserMessage content={message.content} time={message.sentAt} />;
             }
             return (
               <Message
                 key={message._id}
                 author={message.author._id === authUser._id ? 'You' : message.author.name}
                 content={message.content}
-                time={setTime(message.sentAt)}
+                time={message.sentAt}
               />
             );
           })}

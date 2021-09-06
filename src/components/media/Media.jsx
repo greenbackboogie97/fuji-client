@@ -13,10 +13,8 @@ export default function Media(props) {
   const [media, setMedia] = useState([]);
 
   useEffect(() => {
-    if (!props.open) return;
-    FujiAPI.media.getMedia(props.mediaID).then((res) => setMedia(res.data.media));
+    if (props.open) FujiAPI.media.getMedia(props.mediaID).then((res) => setMedia(res.data.media));
 
-    // eslint-disable-next-line consistent-return
     return setMedia([]);
   }, [props.mediaID, userID, props.open]);
 
@@ -25,7 +23,7 @@ export default function Media(props) {
       <div className={classes.root}>
         <MediaHeader />
         <Grid container className={classes.grid}>
-          {media.length < 1 ? (
+          {!media.length ? (
             <MediaPlaceholder />
           ) : (
             media.map((image, id) => {
@@ -43,7 +41,7 @@ export default function Media(props) {
           )}
         </Grid>
         <Divider />
-        {userID === props.mediaID ? <MediaUpload /> : null}
+        {userID === props.mediaID && <MediaUpload />}
       </div>
     </Modal>
   );

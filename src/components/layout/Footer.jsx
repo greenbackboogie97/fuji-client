@@ -12,10 +12,7 @@ export default function Footer() {
   const authStatus = useSelector((state) => authStatusSelector(state));
   const [mount, setMount] = useState();
 
-  const handleChatClick = () => {
-    setMount(!mount);
-  };
-
+  const handleChatClick = () => setMount(!mount);
   const handleCollapseExit = () => dispatch(cleanChatState());
 
   return (
@@ -28,13 +25,13 @@ export default function Footer() {
 
       <AppBar className={classes.root} position="relative">
         <Toolbar className={classes.toolbar} variant="dense">
-          {authStatus === 'logged' ? (
+          {authStatus === 'logged' && (
             <Badge badgeContent={3} color="primary">
               <IconButton className={classes.chatToggle} onClick={handleChatClick}>
                 <IoIosChatboxes />
               </IconButton>
             </Badge>
-          ) : null}
+          )}
         </Toolbar>
       </AppBar>
     </>
@@ -51,12 +48,11 @@ const useStyles = makeStyles((theme) => ({
     justifyContent: 'space-between',
     borderTop: `1px solid ${theme.palette.primary.semi}`,
     background: theme.palette.primary.background.paper,
-    backdropFilter: 'blur(10px)',
     padding: `0 ${theme.spacing(2)}px`,
   },
   chatToggle: {
     padding: theme.spacing(1),
-    color: theme.palette.secondary.button,
+    color: theme.palette.primary.contrastText,
   },
   chatBoxContainer: {
     width: 'fit-content',

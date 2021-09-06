@@ -85,7 +85,7 @@ const useStyles = makeStyles((theme) => ({
     flexDirection: 'column',
     justifyContent: 'center',
     border: `1px solid ${theme.palette.primary.semi}`,
-    borderRadius: '4px',
+    borderRadius: theme.shape.borderRadius,
     background: theme.palette.primary.background.paper,
     margin: '30vh auto',
     padding: theme.spacing(2),

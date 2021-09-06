@@ -10,9 +10,7 @@ export default function MediaUpload() {
   const [selectedFile, setSelectedFile] = useState('');
   const [loading, setLoading] = useState(false);
 
-  const handleChooseClick = () => {
-    uploadRef.current.click();
-  };
+  const handleChooseClick = () => uploadRef.current.click();
 
   const handleFilesChange = () => {
     const file = uploadRef.current.files[0];
@@ -20,15 +18,16 @@ export default function MediaUpload() {
   };
 
   const handleUploadClick = () => {
-    if (!selectedFile) return;
-    setLoading(true);
-    const reader = new FileReader();
-    reader.readAsDataURL(selectedFile);
-    reader.onloadend = () =>
-      FujiAPI.media.uploadMedia({ data: reader.result }).then(() => {
-        setSelectedFile('');
-        setLoading(false);
-      });
+    if (selectedFile) {
+      setLoading(true);
+      const reader = new FileReader();
+      reader.readAsDataURL(selectedFile);
+      reader.onloadend = () =>
+        FujiAPI.media.uploadMedia({ data: reader.result }).then(() => {
+          setSelectedFile('');
+          setLoading(false);
+        });
+    }
   };
 
   return (

@@ -13,6 +13,7 @@ import {
 import { IoIosMore, IoIosTrash } from 'react-icons/io';
 import { useDispatch, useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom';
+import TimeAgo from 'timeago-react';
 import { deletePost } from '../../../services/redux/slices/feedSlice/feedReducer';
 
 export default function PostHeader(props) {
@@ -22,28 +23,19 @@ export default function PostHeader(props) {
   const [anchorEl, setAnchorEl] = useState(null);
   const deleteStatus = useSelector((state) => state.feed.posts.deleteStatus);
 
-  const handleUserClick = () => {
-    history.push(`/profile/${props.authorID}`);
-  };
+  const handleUserClick = () => history.push(`/profile/${props.authorID}`);
 
   const handleClick = (e) => setAnchorEl(e.target);
   const handleClose = () => setAnchorEl(null);
 
-  const handleDeletePost = async () => {
-    await dispatch(deletePost(props.postID));
-    return setAnchorEl(null);
-  };
+  const handleDeletePost = () => dispatch(deletePost(props.postID)).then(handleClose());
 
   return (
     <CardHeader
       className={classes.root}
-      avatar={
-        <>
-          <Avatar src={props.avatar} className={classes.avatar} onClick={handleUserClick} />
-        </>
-      }
+      avatar={<Avatar src={props.avatar} className={classes.avatar} onClick={handleUserClick} />}
       title={props.username}
-      subheader={props.time}
+      subheader={<TimeAgo datetime={props.time} />}
       action={
         props.action && (
           <>

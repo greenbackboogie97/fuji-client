@@ -6,49 +6,46 @@ import PostContent from './postComponents/PostContent.jsx';
 import PostSocialBar from './postComponents/PostSocialBar.jsx';
 import CommentInput from '../inputs/CommentInput.jsx';
 import PostComment from './postComponents/PostComment.jsx';
-import setTime from '../../util/timeFormating';
-import { addComment, addLike, removeLike } from '../../services/redux/slices/feedSlice/feedReducer';
-import { currentPostSelector } from '../../services/redux/slices/feedSlice/feedSelectors';
+import {
+  addComment,
+  addLike,
+  cleanPostComments,
+  getComments,
+  removeLike,
+} from '../../services/redux/slices/feedSlice/feedReducer';
+import {
+  currentPostSelector,
+  feedCommentsStatusSelector,
+  newCommentStatusSelector,
+} from '../../services/redux/slices/feedSlice/feedSelectors';
 import { authUserSelector } from '../../services/redux/slices/authSlice/authSelectors';
-import FujiAPI from '../../services/API/FujiAPI';
 
 export default function Post(props) {
   const classes = useStyles();
   const dispatch = useDispatch();
   const [expanded, setExpanded] = useState(false);
-  const [commentsStatus, setCommentsStatus] = useState('idle');
-  const [commentSubmitStatus, setCommentSubmitStatus] = useState('idle');
   const currentPost = useSelector((state) => currentPostSelector(state, props.postID));
-  const [comments, setComments] = useState(currentPost.comments);
   const authUser = useSelector((state) => authUserSelector(state));
-  const liked = Boolean(currentPost.likes.find((like) => like._id === authUser._id));
+  const newCommentStatus = useSelector((state) => newCommentStatusSelector(state));
+  const feedCommentsStatus = useSelector((state) => feedCommentsStatusSelector(state));
+  const [liked, setLiked] = useState(currentPost.likes.some((like) => like._id === authUser._id));
 
-  const handleCommentClick = async () => {
+  const handleCommentClick = () => {
     setExpanded(!expanded);
-    if (expanded === false) {
-      setCommentsStatus('loading');
-      const response = await FujiAPI.feed.getComments(currentPost._id);
-      setComments(response.data.data.comments);
-      setCommentsStatus('success');
+    if (!expanded) {
+      dispatch(getComments(currentPost._id));
     }
+    if (expanded) dispatch(cleanPostComments(currentPost._id));
   };
 
-  const handleCommentSubmit = async (content) => {
-    setCommentSubmitStatus('loading');
-    const response = await FujiAPI.feed.addComment({ id: currentPost._id, content });
-    setComments((prev) => [...prev, response.data.data.comment]);
-    dispatch(addComment({ postID: currentPost._id, commentID: response.data.data._id }));
-    setCommentSubmitStatus('success');
-  };
+  const handleCommentSubmit = (content) => dispatch(addComment({ id: currentPost._id, content }));
 
-  const handleLikeClick = async () => {
+  const handleLikeClick = () => {
     if (!liked) {
-      await FujiAPI.feed.addLike(currentPost._id);
-      dispatch(addLike({ postID: currentPost._id, authUser }));
+      dispatch(addLike(currentPost._id)).then(setLiked(true));
     }
     if (liked) {
-      await FujiAPI.feed.removeLike(currentPost._id);
-      dispatch(removeLike({ postID: currentPost._id, authUser }));
+      dispatch(removeLike(currentPost._id)).then(setLiked(false));
     }
   };
 
@@ -59,7 +56,7 @@ export default function Post(props) {
           <PostHeader
             avatar={currentPost.author.profilePicture}
             username={currentPost.author.name}
-            time={setTime(currentPost.createdAt)}
+            time={currentPost.createdAt}
             action={currentPost.author._id === authUser._id}
             postID={currentPost._id}
             authorID={currentPost.author._id}
@@ -69,7 +66,7 @@ export default function Post(props) {
             liked={liked}
             likesCount={currentPost.likes.length}
             onLikeClick={handleLikeClick}
-            commentsCount={comments.length}
+            commentsCount={currentPost.comments.length}
             onCommentClick={handleCommentClick}
             commentsExpanded={expanded}
           />
@@ -77,11 +74,11 @@ export default function Post(props) {
             <CommentInput
               onSubmit={(value) => handleCommentSubmit(value)}
               placeholder="Write a comment..."
-              status={commentSubmitStatus}
+              status={newCommentStatus}
             />
-            {!!comments.length && commentsStatus !== 'loading' && (
-              <List className={classes.comments}>
-                {comments.map((comment) => {
+            {currentPost.fetchedComments && feedCommentsStatus !== 'pending' && (
+              <List>
+                {currentPost.fetchedComments.map((comment) => {
                   return (
                     comment.author && (
                       <PostComment
@@ -90,7 +87,7 @@ export default function Post(props) {
                         avatar={comment.author.profilePicture}
                         username={comment.author.name}
                         content={comment.content}
-                        time={setTime(comment.createdAt)}
+                        time={comment.createdAt}
                       />
                     )
                   );
@@ -112,8 +109,5 @@ const useStyles = makeStyles((theme) => ({
     border: `1px solid ${theme.palette.primary.semi}`,
     borderRadius: theme.shape.borderRadius,
     boxShadow: 'unset',
-  },
-  comments: {
-    marginTop: theme.spacing(3),
   },
 }));

@@ -15,6 +15,7 @@ import {
 import { getPosts } from '../services/redux/slices/feedSlice/feedReducer';
 import Post from '../components/post/Post.jsx';
 import { newPostStatusSelector } from '../services/redux/slices/newPostSlice/newPostSelectors';
+import FriendsFeedPlaceholder from '../components/layout/FriendsFeedPlaceholder.jsx';
 
 export default function Home() {
   const classes = useStyles();
@@ -36,9 +37,11 @@ export default function Home() {
       <Feed>
         <FeedControl />
         <NewPost />
-        {feedPosts.map((post) => (
-          <Post key={post._id} postID={post._id} />
-        ))}
+        {feedPosts.length ? (
+          feedPosts.map((post) => <Post key={post._id} postID={post._id} />)
+        ) : (
+          <FriendsFeedPlaceholder />
+        )}
       </Feed>
       <Footer />
     </div>
