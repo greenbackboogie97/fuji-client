@@ -58,7 +58,7 @@ export default function NewPost() {
             </IconButton>
           }
         />
-        {newPostMedia.length > 0 && (
+        {!!newPostMedia.length && (
           <Grid container>
             {newPostMedia.map((image, index) => {
               return <NewPostMediaPreview key={index} url={image} />;

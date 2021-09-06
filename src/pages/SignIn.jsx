@@ -32,12 +32,10 @@ export default function SignIn() {
   const handleEmailChange = (e) => setForm((prev) => ({ ...prev, email: e.target.value }));
   const hanldePasswordChange = (e) => setForm((prev) => ({ ...prev, password: e.target.value }));
 
-  const handleSignIn = () => {
-    dispatch(signIn(form));
-  };
+  const handleSignIn = () => dispatch(signIn(form));
 
-  const handleSecondaryButtonClick = () => {
-    dispatch(cleanAuthState());
+  const handleSecondaryButtonClick = async () => {
+    await dispatch(cleanAuthState());
     history.push('/signup');
   };
 
@@ -59,7 +57,7 @@ export default function SignIn() {
         />
         <Tooltip open={Boolean(authError)} title={authError || ''} placement="bottom" arrow>
           <Button className={classes.signInButton} onClick={handleSignIn}>
-            {authStatus === 'pending' ? <CircularProgress color="inherit" size={24} /> : 'SIGN IN'}
+            {authStatus === 'pending' ? <CircularProgress color="inherit" size={24} /> : 'Sign In'}
           </Button>
         </Tooltip>
         <Button variant="text" color="secondary" onClick={handleSecondaryButtonClick}>

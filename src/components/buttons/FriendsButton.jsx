@@ -13,17 +13,15 @@ import {
 export default function FriendsButton(props) {
   const classes = useStyles();
   const dispatch = useDispatch();
-
   const profileUser = useSelector((state) => profileUserSelector(state));
-  const isFriend = Boolean(profileUser.friends.includes(props.id));
-
+  const isFriend = profileUser.friends.includes(props.id);
   const [modalOpen, setModalOpen] = useState(false);
 
   const handleModalClose = () => setModalOpen(!modalOpen);
 
-  const handleFriendsListClick = async () => {
+  const handleFriendsListClick = () => {
     setModalOpen(true);
-    await dispatch(getFriends(profileUser._id));
+    dispatch(getFriends(profileUser._id));
   };
 
   const handleFriendsActionClick = () => {

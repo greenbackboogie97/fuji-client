@@ -9,7 +9,7 @@ export default function ProfileIntro(props) {
   const classes = useStyles();
   const dispatch = useDispatch();
   const authUser = useSelector((state) => authUserSelector(state));
-  const isMe = Boolean(authUser._id === props.id);
+  const isMe = authUser._id === props.id;
   const [username, setUsername] = useState(authUser.name);
   const [bio, setBio] = useState(authUser.bio);
   const [profilePicture, setProfilePicture] = useState(authUser.profilePicture);
@@ -18,17 +18,12 @@ export default function ProfileIntro(props) {
   const handleMediaOpen = () => setMediaOpen(true);
   const handleMediaClose = () => setMediaOpen(false);
 
-  const handleUsernameChange = (e) => {
-    setUsername(e.target.value);
-  };
+  const handleUsernameChange = (e) => setUsername(e.target.value);
 
-  const handleBioChange = (e) => {
-    setBio(e.target.value);
-  };
+  const handleBioChange = (e) => setBio(e.target.value);
 
-  const handleEditedValue = async (key, value) => {
-    if (authUser[key] === value) return;
-    await dispatch(editUser({ key, value }));
+  const handleEditedValue = (key, value) => {
+    if (authUser[key] !== value) dispatch(editUser({ key, value }));
   };
 
   useEffect(() => {

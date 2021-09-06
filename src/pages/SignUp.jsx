@@ -39,8 +39,8 @@ export default function SignUp() {
 
   const handleSignUp = () => dispatch(signUp(form));
 
-  const handleSecondaryButtonClick = () => {
-    dispatch(cleanAuthState());
+  const handleSecondaryButtonClick = async () => {
+    await dispatch(cleanAuthState());
     history.push('/signin');
   };
 

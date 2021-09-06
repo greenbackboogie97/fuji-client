@@ -28,9 +28,7 @@ export default function Profile() {
   const profileUser = useSelector((state) => profileUserSelector(state));
 
   useEffect(() => {
-    if (id) {
-      dispatch(getPosts(`id-${id}`));
-    }
+    if (id) dispatch(getPosts(`id-${id}`));
   }, [id, dispatch]);
 
   useEffect(() => {
@@ -51,9 +49,7 @@ export default function Profile() {
           <ProfileBar id={id} />
           <Feed>
             {!!feedPosts.length &&
-              feedPosts.map((post) => {
-                return <Post key={post._id} postID={post._id} />;
-              })}
+              feedPosts.map((post) => <Post key={post._id} postID={post._id} />)}
           </Feed>
         </Grid>
         <Footer />

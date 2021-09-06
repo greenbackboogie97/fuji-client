@@ -3,28 +3,29 @@ import { Button, Checkbox, Grid, makeStyles } from '@material-ui/core';
 import { useDispatch, useSelector } from 'react-redux';
 import { editUser } from '../../../services/redux/slices/authSlice/authReducer';
 import { addMedia, removeMedia } from '../../../services/redux/slices/newPostSlice/newPostReducer';
+import { authUserSelector } from '../../../services/redux/slices/authSlice/authSelectors';
+import { newPostMediaSelector } from '../../../services/redux/slices/newPostSlice/newPostSelectors';
 
 export default function MediaItem(props) {
   const classes = useStyles();
   const dispatch = useDispatch();
-  const user = useSelector((state) => state.auth.user);
-  const newPostMedia = useSelector((state) => state.newPost.media);
+  const authUser = useSelector((state) => authUserSelector(state));
+  const newPostMedia = useSelector((state) => newPostMediaSelector(state));
   const [selected, setSelected] = useState(newPostMedia.includes(props.url));
 
   const handleImageSelect = () => {
     if (selected) {
       dispatch(removeMedia(props.url));
-      setSelected((prev) => !prev);
-    } else {
-      if (newPostMedia.length === 3) return;
-      dispatch(addMedia(props.url));
-      setSelected((prev) => !prev);
+      setSelected(false);
     }
+    if (newPostMedia.length === 3) return;
+    dispatch(addMedia(props.url));
+    setSelected(true);
   };
 
-  const handleProfilePictureSelect = async () => {
-    if (user.profilePicture === props.url) return;
-    await dispatch(editUser({ key: 'profilePicture', value: props.url }));
+  const handleProfilePictureSelect = () => {
+    if (authUser.profilePicture !== props.url)
+      dispatch(editUser({ key: 'profilePicture', value: props.url }));
   };
 
   return (

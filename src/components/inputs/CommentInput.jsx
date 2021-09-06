@@ -12,9 +12,10 @@ export default function MessageField(props) {
 
   const handleFormSubmit = (e) => {
     e.preventDefault();
-    if (value.length < 1) return;
-    props.onSubmit(value);
-    setValue('');
+    if (value.length) {
+      props.onSubmit(value);
+      setValue('');
+    }
   };
 
   return (

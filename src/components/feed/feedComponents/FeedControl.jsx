@@ -10,8 +10,7 @@ export default function FeedControl() {
   const currentFeed = useSelector((state) => currentFeedSelector(state));
 
   const handleFeedClick = (feed) => {
-    if (feed === currentFeed) return;
-    dispatch(setFeed(feed));
+    if (feed !== currentFeed) dispatch(setFeed(feed));
   };
 
   return (

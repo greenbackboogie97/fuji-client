@@ -7,9 +7,7 @@ export default function NoDataPlaceholder() {
   const classes = useStyles();
   const dispatch = useDispatch();
 
-  const handleClick = async () => {
-    dispatch(setFeed('community'));
-  };
+  const handleClick = () => dispatch(setFeed('community'));
 
   return (
     <Grid item xs={12} sm={10} md={9} lg={8} xl={7}>

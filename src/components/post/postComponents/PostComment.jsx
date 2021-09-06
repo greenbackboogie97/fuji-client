@@ -7,15 +7,14 @@ import {
   Typography,
   makeStyles,
 } from '@material-ui/core';
+import TimeAgo from 'timeago-react';
 import { useHistory } from 'react-router-dom';
 
 export default function PostComment(props) {
   const classes = useStyles();
   const history = useHistory();
 
-  const handleUserClick = () => {
-    history.push(`/profile/${props.authorID}`);
-  };
+  const handleUserClick = () => history.push(`/profile/${props.authorID}`);
 
   return (
     <ListItem className={classes.root}>
@@ -29,7 +28,7 @@ export default function PostComment(props) {
         />
       </div>
       <Typography className={classes.time} variant="body2">
-        {props.time}
+        {<TimeAgo datetime={props.time} />}
       </Typography>
     </ListItem>
   );

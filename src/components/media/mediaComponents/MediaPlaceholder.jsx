@@ -1,8 +1,9 @@
-import { Grid, makeStyles, Typography } from '@material-ui/core';
 import React from 'react';
+import { Grid, makeStyles, Typography } from '@material-ui/core';
 
 export default function MediaPlaceholder() {
   const classes = useStyles();
+
   return (
     <Grid item xs={12} className={classes.root}>
       <Typography className={classes.text}>No media to display.</Typography>
@@ -19,7 +20,7 @@ const useStyles = makeStyles((theme) => ({
   },
   text: {
     fontWeight: '600',
-    fontSize: '15px',
+    fontSize: '16px',
     color: theme.palette.secondary.semi,
   },
 }));
