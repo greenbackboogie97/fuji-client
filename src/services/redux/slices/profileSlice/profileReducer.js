@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import FujiAPI from '../../../API/FujiAPI';
 
@@ -43,7 +44,9 @@ export const removeFriend = createAsyncThunk('profile/removeFriend', async (payl
 const profileReducer = createSlice({
   name: 'profile',
   initialState,
-  reducers: {},
+  reducers: {
+    cleanProfileState: (state) => (state = initialState),
+  },
   extraReducers: {
     [getUser.pending](state) {
       state.status = 'pending';
@@ -87,3 +90,4 @@ const profileReducer = createSlice({
 });
 
 export default profileReducer.reducer;
+export const { cleanProfileState } = profileReducer.actions;

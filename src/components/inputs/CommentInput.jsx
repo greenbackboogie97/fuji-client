@@ -30,7 +30,7 @@ export default function MessageField(props) {
             onClick={handleFormSubmit}
             className={classes.adorment}
           >
-            {props.status !== 'loading' ? (
+            {props.status !== 'pending' ? (
               <MdSend style={{ cursor: 'pointer' }} />
             ) : (
               <CircularProgress size={16} color="inherit" />

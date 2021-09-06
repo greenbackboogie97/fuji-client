@@ -4,7 +4,7 @@ import { IoIosChatboxes } from 'react-icons/io';
 import { useDispatch, useSelector } from 'react-redux';
 import { authStatusSelector } from '../../services/redux/slices/authSlice/authSelectors';
 import Chat from '../chat/Chat.jsx';
-import { cleanChatReducer } from '../../services/redux/slices/chatSlice/chatReducer';
+import { cleanChatState } from '../../services/redux/slices/chatSlice/chatReducer';
 
 export default function Footer() {
   const classes = useStyles();
@@ -16,7 +16,7 @@ export default function Footer() {
     setMount(!mount);
   };
 
-  const handleCollapseExit = () => dispatch(cleanChatReducer());
+  const handleCollapseExit = () => dispatch(cleanChatState());
 
   return (
     <>
