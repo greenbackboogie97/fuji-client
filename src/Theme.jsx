@@ -3,7 +3,7 @@ import { createTheme, ThemeProvider } from '@material-ui/core/styles';
 import { CssBaseline } from '@material-ui/core';
 
 const lightPalette = {
-  main: '#7cacdc',
+  main: '#BC012D',
   background: {
     default: '#F0F6FC',
     paper: '#FFFF',
@@ -13,7 +13,7 @@ const lightPalette = {
 };
 
 const darkPalette = {
-  main: '#7cacdc',
+  main: '#BC012D',
   background: {
     default: '#0D1117',
     paper: '#161B22',
@@ -28,8 +28,7 @@ function theme(mode) {
       type: mode === 'light' ? 'light' : 'dark',
       primary: mode === 'light' ? lightPalette : darkPalette,
       secondary: {
-        main: '#BC012D',
-        connected: '#00cc66',
+        main: '#00cc66',
       },
     },
     typography: {
