@@ -60,7 +60,7 @@ export default function SignIn() {
             {authStatus === 'pending' ? <CircularProgress color="inherit" size={24} /> : 'Sign In'}
           </Button>
         </Tooltip>
-        <Button variant="text" color="secondary" onClick={handleSecondaryButtonClick}>
+        <Button variant="text" color="default" onClick={handleSecondaryButtonClick}>
           New to Fuji? Sign Up Here
         </Button>
       </form>

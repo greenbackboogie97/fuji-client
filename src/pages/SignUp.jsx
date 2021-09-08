@@ -77,7 +77,7 @@ export default function SignUp() {
             {authStatus === 'pending' ? <CircularProgress color="inherit" size={24} /> : 'SIGN UP'}
           </Button>
         </Tooltip>
-        <Button variant="text" color="secondary" onClick={handleSecondaryButtonClick}>
+        <Button variant="text" color="default" onClick={handleSecondaryButtonClick}>
           Already have an account? Sign in
         </Button>
       </form>

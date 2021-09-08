@@ -17,7 +17,7 @@ export default function PostSocialBar(props) {
       className={classes.root}
       style={props.commentsExpanded ? { marginBottom: 12 } : null}
     >
-      <Badge className={classes.badge} badgeContent={props.likesCount} color="primary">
+      <Badge className={classes.badge} badgeContent={props.likesCount}>
         <Checkbox
           onClick={onLikeClick}
           className={classes.socialButton}
@@ -26,7 +26,7 @@ export default function PostSocialBar(props) {
           checkedIcon={<MdFavorite className={classes.checkedLike} />}
         />
       </Badge>
-      <Badge className={classes.badge} badgeContent={props.commentsCount} color="primary">
+      <Badge className={classes.badge} badgeContent={props.commentsCount}>
         <IconButton className={classes.socialButton} onClick={props.onCommentClick}>
           <FaRegComments />
         </IconButton>
