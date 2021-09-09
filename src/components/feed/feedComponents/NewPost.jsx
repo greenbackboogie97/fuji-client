@@ -67,7 +67,7 @@ export default function NewPost() {
         )}
         <Media mediaID={authUserID} newPost={true} open={mediaOpen} onClose={handleMediaClose} />
         <Button
-          color="secondary"
+          color="primary"
           disabled={value.length < 1 && newPostMedia.length < 1}
           onClick={handlePostClick}
         >
