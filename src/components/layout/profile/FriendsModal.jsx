@@ -78,7 +78,7 @@ const useStyles = makeStyles((theme) => ({
   root: {
     display: 'flex',
     flexDirection: 'column',
-    width: '60vw',
+    width: '80vw',
     height: '50vh',
     margin: '25vh auto',
     background: theme.palette.primary.background.paper,
