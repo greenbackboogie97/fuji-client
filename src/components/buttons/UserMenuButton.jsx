@@ -8,6 +8,7 @@ import ChangePassword from '../forms/ChangePassword.jsx';
 import { cleanChatState } from '../../services/redux/slices/chatSlice/chatReducer';
 import { cleanFeedState } from '../../services/redux/slices/feedSlice/feedReducer';
 import { cleanProfileState } from '../../services/redux/slices/profileSlice/profileReducer';
+import { disconnectSocket } from '../../services/socket';
 
 export default function UserMenuButton() {
   const classes = useStyles();
@@ -31,6 +32,7 @@ export default function UserMenuButton() {
     handleClose();
     dispatch(cleanAuthState());
     dispatch(cleanChatState());
+    disconnectSocket();
     dispatch(cleanFeedState());
     dispatch(cleanProfileState());
   };
@@ -62,7 +64,7 @@ const useStyles = makeStyles((theme) => ({
   },
   avatar: {
     cursor: 'pointer',
-    height: '24px',
-    width: '24px',
+    height: '30px',
+    width: '30px',
   },
 }));

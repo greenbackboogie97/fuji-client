@@ -1,11 +1,13 @@
 import React from 'react';
-import { withStyles, Switch } from '@material-ui/core';
-import { IoMoon, IoSunny } from 'react-icons/io5';
+import { IconButton, makeStyles } from '@material-ui/core';
 import { useDispatch, useSelector } from 'react-redux';
 import { setTheme } from '../../services/redux/slices/themeSlice/themeReducer';
 import { themeTypeSelector } from '../../services/redux/slices/themeSlice/themeSelectors';
+import darkThemeIcon from '../../static/dark.png';
+import lightThemeIcon from '../../static/light.png';
 
 export default function ThemeSwitch() {
+  const classes = useStyles();
   const dispatch = useDispatch();
   const themeType = useSelector((state) => themeTypeSelector(state));
 
@@ -15,36 +17,23 @@ export default function ThemeSwitch() {
   };
 
   return (
-    <ModeSwitch
-      disableRipple
-      icon={<IoMoon />}
-      checkedIcon={<IoSunny />}
-      onClick={handleSwitchClick}
-    />
+    <IconButton className={classes.root} onClick={handleSwitchClick}>
+      {themeType === 'light' ? (
+        <img className={classes.icon} src={lightThemeIcon} alt="light theme" />
+      ) : (
+        <img className={classes.icon} src={darkThemeIcon} alt="dark theme" />
+      )}
+    </IconButton>
   );
 }
 
-const ModeSwitch = withStyles((theme) => ({
+const useStyles = makeStyles((theme) => ({
   root: {
-    width: 32,
-    height: 32,
     padding: 0,
-    display: 'flex',
-    alignItems: 'center',
     marginRight: theme.spacing(1),
+    marginLeft: theme.spacing(2),
   },
-  track: {
-    opacity: 0,
+  icon: {
+    height: 38,
   },
-  switchBase: {
-    color: theme.palette.primary.contrastText,
-    padding: theme.spacing(1),
-    '&.Mui-checked': {
-      color: theme.palette.primary.contrastText,
-      transform: 'translateX(0px)',
-      '& + .MuiSwitch-track': {
-        opacity: 0,
-      },
-    },
-  },
-}))(Switch);
+}));
