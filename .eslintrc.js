@@ -19,5 +19,6 @@ module.exports = {
     'arrow-body-style': 'off',
     'no-restricted-syntax': 'off',
     'no-continue': 'off',
+    'no-extra-boolean-cast': 'off',
   },
 };

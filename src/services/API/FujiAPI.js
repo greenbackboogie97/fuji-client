@@ -14,6 +14,9 @@ const FujiAPI = {
     signUp(payload) {
       return FujiAxios.post(`${this.resource}/signup`, payload);
     },
+    getUsers() {
+      return FujiAxios.get(`${this.resource}`);
+    },
     getUser(payload) {
       return FujiAxios.get(`${this.resource}/${payload}`);
     },
@@ -76,6 +79,9 @@ const FujiAPI = {
     },
     getConversation(payload) {
       return FujiAxios.get(`${this.resource}/${payload}`);
+    },
+    createConversation(payload) {
+      return FujiAxios.post(`${this.resource}/${payload}`);
     },
     getMessages(payload) {
       return FujiAxios.get(`${this.resource}/${payload}/messages`);
