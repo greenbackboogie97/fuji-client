@@ -16,7 +16,7 @@ import {
 import { getPosts } from '../services/redux/slices/feedSlice/feedReducer';
 import Post from '../components/post/Post.jsx';
 import { newPostStatusSelector } from '../services/redux/slices/newPostSlice/newPostSelectors';
-import FriendsFeedPlaceholder from '../components/layout/FriendsFeedPlaceholder.jsx';
+import FriendsFeedPlaceholder from '../components/feed/feedComponents/FriendsFeedPlaceholder.jsx';
 import FeedPostsPlaceholder from '../components/feed/feedComponents/FeedPostsPlaceholder.jsx';
 
 export default function Home() {

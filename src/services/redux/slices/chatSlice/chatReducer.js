@@ -5,7 +5,7 @@ import { getContactsSockets } from '../../../socket';
 
 const initialState = {
   contacts: {
-    contacts: undefined,
+    contacts: null,
     status: 'idle',
     socketStatus: 'idle',
   },

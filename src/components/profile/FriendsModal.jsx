@@ -12,8 +12,8 @@ import {
 import { IoIosSearch } from 'react-icons/io';
 import { useHistory } from 'react-router-dom';
 import { useSelector } from 'react-redux';
-import SearchInput from '../../inputs/SearchInput.jsx';
-import { profileFriendsSelector } from '../../../services/redux/slices/profileSlice/profileSelectors';
+import SearchInput from '../inputs/SearchInput.jsx';
+import { profileFriendsSelector } from '../../services/redux/slices/profileSlice/profileSelectors';
 
 export default function FriendsModal(props) {
   const classes = useStyles();

@@ -2,9 +2,9 @@ import React, { useState } from 'react';
 import { AppBar, makeStyles, Toolbar, Grid } from '@material-ui/core';
 
 import { useSelector } from 'react-redux';
-import Media from '../../media/Media.jsx';
-import FriendsButton from '../../buttons/FriendsButton.jsx';
-import MediaButton from '../../buttons/MediaButton.jsx';
+import Media from '../media/Media.jsx';
+import FriendsButton from '../buttons/FriendsButton.jsx';
+import MediaButton from '../buttons/MediaButton.jsx';
 
 export default function ProfileBar(props) {
   const classes = useStyles();

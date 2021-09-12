@@ -14,11 +14,9 @@ import {
 import socket, {
   cleanupContactsListener,
   cleanupMessageListener,
-  cleanupMongoConnectionFailListener,
   connectSocket,
   contactsListenerAndUpdate,
   messageListenerAndUpdate,
-  mongoConnectionFailListener,
 } from './services/socket';
 import { addMessage, updateContacts } from './services/redux/slices/chatSlice/chatReducer';
 
@@ -32,13 +30,11 @@ export default function App() {
   useEffect(() => {
     if (isLogged && !socket.connected) {
       connectSocket(authUser._id);
-      mongoConnectionFailListener(authUser._id);
       contactsListenerAndUpdate((contacts) => dispatch(updateContacts(contacts)));
       messageListenerAndUpdate((message) => dispatch(addMessage(message)));
     }
 
     return () => {
-      cleanupMongoConnectionFailListener();
       cleanupContactsListener();
       cleanupMessageListener();
     };

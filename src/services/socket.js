@@ -10,14 +10,6 @@ export const connectSocket = (id) => {
 
 export const disconnectSocket = () => socket.disconnect();
 
-export const mongoConnectionFailListener = (id) => {
-  socket.on('mongo-failed', () => {
-    connectSocket(id);
-  });
-};
-
-export const cleanupMongoConnectionFailListener = () => socket.off('mongo-failed');
-
 // Connected contacts
 export const contactsListenerAndUpdate = (updateStore) => {
   return socket.on('contacts', (contacts) => updateStore(contacts));

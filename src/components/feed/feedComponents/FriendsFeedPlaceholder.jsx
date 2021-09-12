@@ -1,7 +1,7 @@
 import React from 'react';
 import { Button, Grid, makeStyles, Typography } from '@material-ui/core';
 import { useDispatch } from 'react-redux';
-import { setFeed } from '../../services/redux/slices/feedSlice/feedReducer';
+import { setFeed } from '../../../services/redux/slices/feedSlice/feedReducer';
 
 export default function NoDataPlaceholder() {
   const classes = useStyles();

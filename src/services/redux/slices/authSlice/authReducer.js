@@ -1,4 +1,3 @@
-/* eslint-disable no-unused-vars */
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import FujiAPI from '../../../API/FujiAPI';
 
@@ -33,6 +32,7 @@ const authReducer = createSlice({
   name: 'auth',
   initialState,
   reducers: {
+    // eslint-disable-next-line no-unused-vars
     cleanAuthState: (state) => (state = initialState),
   },
   extraReducers: {

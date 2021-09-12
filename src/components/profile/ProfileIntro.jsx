@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import { makeStyles, Grid, Avatar, Typography } from '@material-ui/core';
 import { useDispatch, useSelector } from 'react-redux';
-import Media from '../../media/Media.jsx';
-import { authUserSelector } from '../../../services/redux/slices/authSlice/authSelectors';
-import { editUser } from '../../../services/redux/slices/authSlice/authReducer';
+import Media from '../media/Media.jsx';
+import { authUserSelector } from '../../services/redux/slices/authSlice/authSelectors';
+import { editUser } from '../../services/redux/slices/authSlice/authReducer';
 
 export default function ProfileIntro(props) {
   const classes = useStyles();

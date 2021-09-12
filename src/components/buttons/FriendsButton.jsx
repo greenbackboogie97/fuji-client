@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { Button, IconButton, makeStyles } from '@material-ui/core';
 import { IoIosAdd, IoIosArrowDown, IoIosCheckmark } from 'react-icons/io';
 import { useDispatch, useSelector } from 'react-redux';
-import FriendsModal from '../layout/profile/FriendsModal.jsx';
+import FriendsModal from '../profile/FriendsModal.jsx';
 import { profileUserSelector } from '../../services/redux/slices/profileSlice/profileSelectors';
 import {
   addFriend,
