@@ -36,5 +36,6 @@ const useStyles = makeStyles((theme) => ({
     borderRadius: '4px 4px 0 0',
     display: 'flex',
     position: 'relative',
+    zIndex: 200,
   },
 }));
