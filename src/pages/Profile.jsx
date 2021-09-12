@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import { makeStyles, Grid } from '@material-ui/core';
+import { makeStyles, Grid, Typography } from '@material-ui/core';
 import { useDispatch, useSelector } from 'react-redux';
 import { Redirect, useParams } from 'react-router-dom';
 import ProfileIntro from '../components/profile/ProfileIntro.jsx';
@@ -48,8 +48,11 @@ export default function Profile() {
           />
           <ProfileBar id={id} />
           <Feed>
-            {!!feedPosts.length &&
-              feedPosts.map((post) => <Post key={post._id} postID={post._id} />)}
+            {!!feedPosts.length ? (
+              feedPosts.map((post) => <Post key={post._id} postID={post._id} />)
+            ) : (
+              <Typography>{`${profileUser.name} haven't posted anything yet`}</Typography>
+            )}
           </Feed>
         </Grid>
         <Footer />
