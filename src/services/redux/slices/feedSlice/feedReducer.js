@@ -6,7 +6,7 @@ import FujiAPI from '../../../API/FujiAPI';
 const initialState = {
   feedName: 'friends',
   posts: {
-    posts: [],
+    posts: null,
     commentsStatus: 'idle',
     newCommentStatus: 'idle',
     status: 'idle',
@@ -80,7 +80,7 @@ const feedReducer = createSlice({
     },
     [getPosts.fulfilled]: (state, action) => {
       state.posts.posts = action.payload.posts;
-      state.status = 'success';
+      state.posts.status = 'success';
     },
     [getPosts.rejected]: (state, action) => {
       state.error = action.error.message;
