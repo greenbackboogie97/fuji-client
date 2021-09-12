@@ -11,11 +11,13 @@ import NewPost from '../components/feed/feedComponents/NewPost.jsx';
 import {
   currentFeedSelector,
   feedPostsSelector,
+  feedStatusSelector,
 } from '../services/redux/slices/feedSlice/feedSelectors';
 import { getPosts } from '../services/redux/slices/feedSlice/feedReducer';
 import Post from '../components/post/Post.jsx';
 import { newPostStatusSelector } from '../services/redux/slices/newPostSlice/newPostSelectors';
 import FriendsFeedPlaceholder from '../components/layout/FriendsFeedPlaceholder.jsx';
+import FeedPostsPlaceholder from '../components/feed/feedComponents/FeedPostsPlaceholder.jsx';
 
 export default function Home() {
   const classes = useStyles();
@@ -24,6 +26,7 @@ export default function Home() {
   const currentFeed = useSelector((state) => currentFeedSelector(state));
   const feedPosts = useSelector((state) => feedPostsSelector(state));
   const newPostStatus = useSelector((state) => newPostStatusSelector(state));
+  const feedStatus = useSelector((state) => feedStatusSelector(state));
   const newPostMemo = useMemo(() => newPostStatus === 'success', [newPostStatus]);
 
   useEffect(() => {
@@ -37,11 +40,12 @@ export default function Home() {
       <Feed>
         <FeedControl />
         <NewPost />
-        {feedPosts.length ? (
-          feedPosts.map((post) => <Post key={post._id} postID={post._id} />)
-        ) : (
-          <FriendsFeedPlaceholder />
-        )}
+        {(feedStatus === 'pending' && <FeedPostsPlaceholder />) ||
+          (!!feedPosts?.length ? (
+            feedPosts.map((post) => <Post key={post._id} postID={post._id} />)
+          ) : (
+            <FriendsFeedPlaceholder />
+          ))}
       </Feed>
       <Footer />
     </div>

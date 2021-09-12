@@ -5,7 +5,6 @@ import { useSelector } from 'react-redux';
 import Media from '../../media/Media.jsx';
 import FriendsButton from '../../buttons/FriendsButton.jsx';
 import MediaButton from '../../buttons/MediaButton.jsx';
-import MessageButton from '../../buttons/MessageButton.jsx';
 
 export default function ProfileBar(props) {
   const classes = useStyles();
@@ -21,7 +20,6 @@ export default function ProfileBar(props) {
         <Toolbar className={classes.toolbar} variant="dense">
           <FriendsButton id={userID} />
           <MediaButton onClick={handleMediaOpen} />
-          <MessageButton />
           <Media mediaID={props.id} open={mediaOpen} onClose={handleMediaClose} />
         </Toolbar>
       </AppBar>
