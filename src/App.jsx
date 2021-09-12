@@ -1,24 +1,47 @@
 import React, { useEffect, useMemo } from 'react';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import { themeTypeSelector } from './services/redux/slices/themeSlice/themeSelectors';
 import Theme from './Theme.jsx';
 import SignIn from './pages/SignIn.jsx';
 import SignUp from './pages/SignUp.jsx';
 import Home from './pages/Home.jsx';
 import Profile from './pages/Profile.jsx';
-import { authStatusSelector } from './services/redux/slices/authSlice/authSelectors';
-import socket from './services/socket';
+import {
+  authStatusSelector,
+  authUserSelector,
+} from './services/redux/slices/authSlice/authSelectors';
+import socket, {
+  cleanupContactsListener,
+  cleanupMessageListener,
+  cleanupMongoConnectionFailListener,
+  connectSocket,
+  contactsListenerAndUpdate,
+  messageListenerAndUpdate,
+  mongoConnectionFailListener,
+} from './services/socket';
+import { addMessage, updateContacts } from './services/redux/slices/chatSlice/chatReducer';
 
 export default function App() {
+  const dispatch = useDispatch();
   const themeType = useSelector((state) => themeTypeSelector(state));
+  const authUser = useSelector((state) => authUserSelector(state));
   const authStatus = useSelector((state) => authStatusSelector(state));
   const isLogged = useMemo(() => authStatus === 'logged', [authStatus]);
 
   useEffect(() => {
-    if (isLogged) {
-      socket.connect();
+    if (isLogged && !socket.connected) {
+      connectSocket(authUser._id);
+      mongoConnectionFailListener(authUser._id);
+      contactsListenerAndUpdate((contacts) => dispatch(updateContacts(contacts)));
+      messageListenerAndUpdate((message) => dispatch(addMessage(message)));
     }
+
+    return () => {
+      cleanupMongoConnectionFailListener();
+      cleanupContactsListener();
+      cleanupMessageListener();
+    };
   }, [isLogged]);
 
   return (

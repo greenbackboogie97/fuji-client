@@ -1,37 +1,32 @@
 import React, { useState } from 'react';
-import { AppBar, Badge, Collapse, IconButton, makeStyles, Toolbar } from '@material-ui/core';
-import { IoIosChatboxes } from 'react-icons/io';
-import { useDispatch, useSelector } from 'react-redux';
-import { authStatusSelector } from '../../services/redux/slices/authSlice/authSelectors';
+import { AppBar, Button, Collapse, makeStyles, Toolbar } from '@material-ui/core';
+import chatIcon from '../../static/chat.png';
 import Chat from '../chat/Chat.jsx';
-import { cleanChatState } from '../../services/redux/slices/chatSlice/chatReducer';
 
 export default function Footer() {
   const classes = useStyles();
-  const dispatch = useDispatch();
-  const authStatus = useSelector((state) => authStatusSelector(state));
+
   const [mount, setMount] = useState();
 
   const handleChatClick = () => setMount(!mount);
-  const handleCollapseExit = () => dispatch(cleanChatState());
 
   return (
     <>
       <div className={classes.chatBoxContainer}>
-        <Collapse in={mount} unmountOnExit onExiting={handleCollapseExit}>
+        <Collapse in={mount} unmountOnExit>
           <Chat />
         </Collapse>
       </div>
-
       <AppBar className={classes.root} position="relative">
         <Toolbar className={classes.toolbar} variant="dense">
-          {authStatus === 'logged' && (
-            <Badge badgeContent={3} color="primary">
-              <IconButton className={classes.chatToggle} onClick={handleChatClick}>
-                <IoIosChatboxes />
-              </IconButton>
-            </Badge>
-          )}
+          <Button
+            className={classes.chatToggle}
+            variant="text"
+            onClick={handleChatClick}
+            startIcon={<img style={{ height: 38 }} src={chatIcon} alt="chat" />}
+          >
+            Fuji Chat
+          </Button>
         </Toolbar>
       </AppBar>
     </>
@@ -52,7 +47,7 @@ const useStyles = makeStyles((theme) => ({
   },
   chatToggle: {
     padding: theme.spacing(1),
-    color: theme.palette.primary.contrastText,
+    fontWeight: 800,
   },
   chatBoxContainer: {
     width: 'fit-content',
