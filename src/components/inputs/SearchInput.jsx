@@ -12,9 +12,9 @@ export default function SearchInput(props) {
       inputRef={props.inputRef}
       className={classes.root}
       endAdornment={
-        props.adorment ? (
+        props.adorment && (
           <InputAdornment className={classes.adorment}>{props.adormentIcon}</InputAdornment>
-        ) : null
+        )
       }
     />
   );

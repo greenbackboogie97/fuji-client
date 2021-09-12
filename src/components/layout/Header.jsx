@@ -1,23 +1,40 @@
-import React from 'react';
-import { AppBar, makeStyles, Toolbar } from '@material-ui/core';
+import React, { useState } from 'react';
+import { AppBar, Collapse, makeStyles, Toolbar } from '@material-ui/core';
 import { useHistory } from 'react-router-dom';
 import { ReactComponent as BrandLogo } from '../../static/Fuji.svg';
 import ThemeSwitch from '../buttons/ThemeSwitch.jsx';
 import SearchInput from '../inputs/SearchInput.jsx';
 import UserMenuButton from '../buttons/UserMenuButton.jsx';
+import SearchDropdown from './SearchDropdown.jsx';
 
 export default function Header() {
   const classes = useStyles();
   const history = useHistory();
+  const [mount, setMount] = useState();
+  const [value, setValue] = useState('');
 
   const handleLogoClick = () => history.push('/');
+
+  const handleSearchChange = (e) => {
+    setValue(e.target.value);
+    if (!mount) {
+      setMount(true);
+    }
+  };
 
   return (
     <AppBar className={classes.root}>
       <Toolbar className={classes.toolbar} variant="dense">
         <BrandLogo className={classes.logo} onClick={handleLogoClick} />
-        <div>
-          <SearchInput placeholder="Search Fuji..." />
+        <div className={classes.searchContainer}>
+          <SearchInput
+            placeholder="Search Fuji..."
+            onChange={(e) => handleSearchChange(e)}
+            value={value}
+          />
+          <Collapse in={mount && value.length > 0} unmountOnExit>
+            <SearchDropdown value={value} />
+          </Collapse>
         </div>
         <div className={classes.toolbarRight}>
           <ThemeSwitch />
@@ -49,5 +66,9 @@ const useStyles = makeStyles((theme) => ({
     '&:hover': {
       opacity: 0.75,
     },
+  },
+  searchContainer: {
+    width: 'fit-content',
+    position: 'relative',
   },
 }));
