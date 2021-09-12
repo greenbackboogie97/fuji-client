@@ -3,7 +3,7 @@ import { Button, CircularProgress, makeStyles, Tooltip } from '@material-ui/core
 import { IoCloudUpload } from 'react-icons/io5';
 import FujiAPI from '../../../services/API/FujiAPI';
 
-export default function MediaUpload() {
+export default function MediaUpload(props) {
   const classes = useStyles();
   const uploadRef = useRef();
 
@@ -23,9 +23,10 @@ export default function MediaUpload() {
       const reader = new FileReader();
       reader.readAsDataURL(selectedFile);
       reader.onloadend = () =>
-        FujiAPI.media.uploadMedia({ data: reader.result }).then(() => {
+        FujiAPI.media.uploadMedia({ data: reader.result }).then((res) => {
           setSelectedFile('');
           setLoading(false);
+          props.addedMedia(res.data.URL);
         });
     }
   };

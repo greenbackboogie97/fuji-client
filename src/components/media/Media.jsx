@@ -6,42 +6,55 @@ import MediaPlaceholder from './mediaComponents/MediaPlaceholder.jsx';
 import MediaItem from './mediaComponents/MediaItem.jsx';
 import MediaUpload from './mediaComponents/MediaUpload.jsx';
 import FujiAPI from '../../services/API/FujiAPI';
+import MediaLoading from './mediaComponents/MediaLoading.jsx';
 
 export default function Media(props) {
   const classes = useStyles();
   const userID = useSelector((state) => state.auth.user._id);
   const [media, setMedia] = useState([]);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    if (props.open) FujiAPI.media.getMedia(props.mediaID).then((res) => setMedia(res.data.media));
+    if (props.open) {
+      FujiAPI.media.getMedia(props.mediaID).then((res) => {
+        setMedia(res.data.media);
+        setLoading(false);
+      });
+    }
 
-    return setMedia([]);
+    return () => {
+      setMedia([]);
+      setLoading(true);
+    };
   }, [props.mediaID, userID, props.open]);
+
+  const handleAddedMedia = (img) => setMedia((prev) => [img, ...prev]);
 
   return (
     <Modal open={props.open} onClose={props.onClose}>
       <div className={classes.root}>
-        <MediaHeader />
+        <MediaHeader onClose={props.onClose} />
         <Grid container className={classes.grid}>
-          {!media.length ? (
-            <MediaPlaceholder />
-          ) : (
-            media.map((image, id) => {
-              return (
-                <MediaItem
-                  key={id}
-                  url={image}
-                  index={id}
-                  length={media.length}
-                  newPost={props.newPost}
-                  profilePictureSelect={props.profilePictureSelect}
-                />
-              );
-            })
-          )}
+          {(loading && <MediaLoading />) ||
+            (!media.length ? (
+              <MediaPlaceholder />
+            ) : (
+              media.map((image, id) => {
+                return (
+                  <MediaItem
+                    key={id}
+                    url={image}
+                    index={id}
+                    length={media.length}
+                    newPost={props.newPost}
+                    profilePictureSelect={props.profilePictureSelect}
+                  />
+                );
+              })
+            ))}
         </Grid>
         <Divider />
-        {userID === props.mediaID && <MediaUpload />}
+        {userID === props.mediaID && <MediaUpload addedMedia={(img) => handleAddedMedia(img)} />}
       </div>
     </Modal>
   );

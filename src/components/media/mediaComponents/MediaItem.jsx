@@ -16,11 +16,10 @@ export default function MediaItem(props) {
   const handleImageSelect = () => {
     if (selected) {
       dispatch(removeMedia(props.url));
-      setSelected(false);
+      return setSelected(false);
     }
-    if (newPostMedia.length === 3) return;
     dispatch(addMedia(props.url));
-    setSelected(true);
+    return setSelected(true);
   };
 
   const handleProfilePictureSelect = () => {
@@ -40,6 +39,7 @@ export default function MediaItem(props) {
               color="default"
               checked={selected}
               onChange={handleImageSelect}
+              disabled={newPostMedia.length === 4 && !newPostMedia.includes(props.url)}
             />
           )}
           {props.profilePictureSelect && (
