@@ -36,7 +36,7 @@ export default function MediaUpload(props) {
       <Button onClick={handleChooseClick} className={classes.btn}>
         Choose File
       </Button>
-      <Tooltip open={Boolean(selectedFile)} title={selectedFile.name || ''} placement="top" arrow>
+      <Tooltip open={Boolean(selectedFile)} title={selectedFile?.name || ''} placement="top" arrow>
         <Button
           onClick={handleUploadClick}
           startIcon={!loading ? <IoCloudUpload /> : <CircularProgress color="inherit" size={24} />}
