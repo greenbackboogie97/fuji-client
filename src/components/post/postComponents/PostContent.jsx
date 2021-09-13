@@ -23,5 +23,6 @@ const useStyles = makeStyles((theme) => ({
   content: {
     color: theme.palette.primary.contrastText,
     marginBottom: theme.spacing(3),
+    wordWrap: 'break-word',
   },
 }));
