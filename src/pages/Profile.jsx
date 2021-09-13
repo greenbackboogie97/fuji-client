@@ -72,6 +72,5 @@ const useStyles = makeStyles({
   root: {
     minHeight: '100vh',
     padding: '49px 0',
-    alignItems: 'center',
   },
 });
