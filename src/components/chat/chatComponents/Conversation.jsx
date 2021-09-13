@@ -19,6 +19,9 @@ export default function Conversation() {
   const activeConversation = useSelector((state) => activeConversationSelector(state));
   const activeConversationStatus = useSelector((state) => activeConversationStatusSelector(state));
   const authUserID = useSelector((state) => authUserIDSelector(state));
+  const conversationUser = activeConversation?.participants.filter(
+    (el) => el._id !== authUserID
+  )[0];
 
   const handleMessageSubmit = (content) => {
     sendMessage({ content, conversationID: activeConversation._id, from: authUserID });
@@ -37,16 +40,12 @@ export default function Conversation() {
       {(activeConversation && (
         <>
           <div className={classes.conversationBar}>
-            <Avatar className={classes.avatar} />
-            <Typography>
-              {activeConversation.participants.filter((el) => el._id !== authUserID)[0].name}
-            </Typography>
+            <Avatar className={classes.avatar} src={conversationUser.profilePicture} />
+            <Typography>{conversationUser.name}</Typography>
           </div>
           <ConversationContent
             messages={activeConversation.messages}
-            contactName={
-              activeConversation.participants.filter((el) => el._id !== authUserID)[0].name
-            }
+            contactName={conversationUser.name}
           />
           <div className={classes.conversationInput}>
             <CommentInput onSubmit={(value) => handleMessageSubmit(value)} />
