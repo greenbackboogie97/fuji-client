@@ -54,6 +54,7 @@ const useStyles = makeStyles((theme) => ({
   },
   content: {
     marginBottom: theme.spacing(2),
+    textAlign: 'start',
   },
   time: {
     alignSelf: 'flex-end',
