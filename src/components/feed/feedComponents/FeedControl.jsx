@@ -14,7 +14,7 @@ export default function FeedControl() {
   };
 
   return (
-    <Grid className={classes.root} item xs={12} sm={10} md={9} lg={8} xl={7}>
+    <Grid item xs={12} sm={10} md={9} lg={8} xl={7}>
       <Button
         className={classes.btn}
         color="default"
@@ -39,11 +39,6 @@ export default function FeedControl() {
 }
 
 const useStyles = makeStyles((theme) => ({
-  root: {
-    position: 'sticky',
-    zIndex: 3,
-    top: 0,
-  },
   btn: {
     background: theme.palette.primary.background.paper,
     marginRight: theme.spacing(1),
