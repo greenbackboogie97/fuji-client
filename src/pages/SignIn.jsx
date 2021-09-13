@@ -43,7 +43,11 @@ export default function SignIn() {
     <Redirect to="/" />
   ) : (
     <Container className={classes.root} fluid="true" maxWidth="xs">
-      <form className={classes.form} autoComplete="off">
+      <form
+        onKeyPress={(e) => e.key === 'Enter' && handleSignIn()}
+        className={classes.form}
+        autoComplete="off"
+      >
         <BrandLogo className={classes.logo} />
         <Typography className={classes.heading} variant="h5">
           Sign in to your account
