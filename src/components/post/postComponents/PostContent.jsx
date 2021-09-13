@@ -7,7 +7,9 @@ export default function PostContent(props) {
 
   return (
     <CardContent className={classes.root}>
-      <Typography className={classes.content}>{props.content}</Typography>
+      <Typography className={classes.content}>
+        <pre>{props.content}</pre>
+      </Typography>
       {!!props.media.length && <MediaCarousel media={props.media} />}
     </CardContent>
   );
