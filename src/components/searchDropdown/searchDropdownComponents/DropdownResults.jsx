@@ -9,10 +9,10 @@ export default function DropdownResults(props) {
       <div className={classes.root}>
         <Typography
           variant="body1"
-          style={{ textAlign: 'center' }}
+          style={{ textAlign: 'center', marginBottom: 4 }}
         >{`${props.length} results`}</Typography>
+        <Divider variant="middle" />
       </div>
-      <Divider variant="middle" />
       {props.results.map((user) => {
         return (
           <div className={classes.user} key={user._id} onClick={() => props.onUserClick(user._id)}>
@@ -31,7 +31,7 @@ const useStyles = makeStyles((theme) => ({
     position: 'sticky',
     zIndex: 5,
     marginBottom: theme.spacing(2),
-    padding: theme.spacing(2),
+    padding: theme.spacing(1),
     paddingTop: 'none',
     background: theme.palette.primary.background.paper,
   },

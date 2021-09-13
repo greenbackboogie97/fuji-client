@@ -43,7 +43,7 @@ export default function ProfileIntro(props) {
         />
         <input
           value={bio}
-          placeholder="Bio goes here"
+          placeholder="bio goes here"
           className={classes.bioEdit}
           onChange={handleBioChange}
           maxLength={32}
