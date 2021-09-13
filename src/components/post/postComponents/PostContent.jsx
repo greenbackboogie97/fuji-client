@@ -8,7 +8,7 @@ export default function PostContent(props) {
   return (
     <CardContent className={classes.root}>
       <Typography className={classes.content}>
-        <pre style={{ fontFamily: 'Inter', wordWrap: 'break-word' }}>{props.content}</pre>
+        <pre style={{ fontFamily: 'Inter', wordBreak: 'break-word' }}>{props.content}</pre>
       </Typography>
       {!!props.media.length && <MediaCarousel media={props.media} />}
     </CardContent>
@@ -18,11 +18,11 @@ export default function PostContent(props) {
 const useStyles = makeStyles((theme) => ({
   root: {
     padding: theme.spacing(3),
-    wordWrap: 'break-word',
+    wordBreak: 'break-word',
   },
   content: {
     color: theme.palette.primary.contrastText,
     marginBottom: theme.spacing(3),
-    wordWrap: 'break-word',
+    wordBreak: 'break-word',
   },
 }));
