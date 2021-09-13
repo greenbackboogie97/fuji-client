@@ -46,7 +46,6 @@ const useStyles = makeStyles((theme) => ({
   root: {
     height: 200,
     width: '100%',
-    padding: theme.spacing(2),
     border: `1px solid ${theme.palette.primary.semi}`,
     borderTop: 'none',
     position: 'absolute',
