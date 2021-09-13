@@ -80,6 +80,7 @@ export default function ControlBar() {
                   key={contact.user._id}
                   expanded={expanded}
                   username={contact.user.name}
+                  avatar={contact.user.profilePicture}
                   connected={Boolean(contact.socket)}
                   onClick={() =>
                     handleContactClick({

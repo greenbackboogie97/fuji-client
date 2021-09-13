@@ -12,7 +12,7 @@ export default function Contact(props) {
         className={classes.badge}
         invisible={props.connected === false}
       >
-        <Avatar className={classes.avatar} />
+        <Avatar className={classes.avatar} src={props.avatar} />
       </Badge>
       {props.expanded && (
         <Typography className={classes.username} variant="body1">
