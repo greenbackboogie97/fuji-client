@@ -6,10 +6,10 @@ import FeedPostsPlaceholder from '../feed/feedComponents/FeedPostsPlaceholder.js
 export default function ProfilePlaceholder() {
   return (
     <>
-      <Grid>
-        <Skeleton variant="rect" height={223} style={{ marginBottom: 20 }} />
+      <Skeleton variant="rect" height={223} style={{ marginBottom: 20 }} />
+      <Grid container direction="column">
+        <FeedPostsPlaceholder />
       </Grid>
-      <FeedPostsPlaceholder />
     </>
   );
 }
