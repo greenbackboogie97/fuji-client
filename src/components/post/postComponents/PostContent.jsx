@@ -8,7 +8,7 @@ export default function PostContent(props) {
   return (
     <CardContent className={classes.root}>
       <Typography className={classes.content}>
-        <pre>{props.content}</pre>
+        <pre style={{ fontFamily: 'Inter' }}>{props.content}</pre>
       </Typography>
       {!!props.media.length && <MediaCarousel media={props.media} />}
     </CardContent>
