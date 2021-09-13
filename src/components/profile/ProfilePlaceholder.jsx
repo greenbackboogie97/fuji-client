@@ -7,7 +7,7 @@ export default function ProfilePlaceholder() {
   return (
     <>
       <Skeleton variant="rect" height={223} style={{ marginBottom: 20 }} />
-      <Grid container direction="column">
+      <Grid container justifyContent="center">
         <FeedPostsPlaceholder />
       </Grid>
     </>
