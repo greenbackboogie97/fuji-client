@@ -55,6 +55,6 @@ const useStyles = makeStyles((theme) => ({
     position: 'fixed',
     bottom: '48px',
     left: '2vw',
-    zIndex: '10',
+    zIndex: '200',
   },
 }));
