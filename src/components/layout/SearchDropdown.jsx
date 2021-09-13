@@ -27,10 +27,7 @@ export default function SearchDropdown(props) {
 
   return (
     <div className={classes.root}>
-      {!!users.length && (
-        <Typography style={{ marginBottom: 8 }}>{`${users.length} results`}</Typography>
-      )}
-      {loading ? (
+      {(loading && (
         <>
           <Skeleton variant="text" width="100%" />
           <Skeleton variant="text" width="100%" />
@@ -38,17 +35,28 @@ export default function SearchDropdown(props) {
           <Skeleton variant="text" width="100%" />
           <Skeleton variant="text" width="100%" />
         </>
-      ) : (
-        !!users.length &&
-        users.map((user) => {
-          return (
-            <div className={classes.user} key={user._id} onClick={() => handleUserClick(user._id)}>
-              <Avatar className={classes.avatar} src={user.profilePicture} />
-              <Typography>{user.name}</Typography>
+      )) ||
+        (!!users.length ? (
+          <>
+            <div className={classes.results}>
+              <Typography>{`${users.length} results`}</Typography>
             </div>
-          );
-        })
-      )}
+            {users.map((user) => {
+              return (
+                <div
+                  className={classes.user}
+                  key={user._id}
+                  onClick={() => handleUserClick(user._id)}
+                >
+                  <Avatar className={classes.avatar} src={user.profilePicture} />
+                  <Typography>{user.name}</Typography>
+                </div>
+              );
+            })}
+          </>
+        ) : (
+          <Typography>No results</Typography>
+        ))}
     </div>
   );
 }
@@ -66,6 +74,13 @@ const useStyles = makeStyles((theme) => ({
     top: 42,
     background: theme.palette.primary.background.paper,
   },
+  results: {
+    top: 0,
+    position: 'sticky',
+    zIndex: 5,
+    marginBottom: theme.spacing(2),
+    padding: theme.spacing(2),
+  },
   user: {
     display: 'flex',
     alignItems: 'center',
@@ -74,6 +89,7 @@ const useStyles = makeStyles((theme) => ({
       opacity: 0.7,
     },
     marginBottom: theme.spacing(2),
+    padding: theme.spacing(2),
   },
   avatar: {
     height: 32,
