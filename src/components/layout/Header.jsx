@@ -5,7 +5,7 @@ import { ReactComponent as BrandLogo } from '../../static/Fuji.svg';
 import ThemeSwitch from '../buttons/ThemeSwitch.jsx';
 import SearchInput from '../inputs/SearchInput.jsx';
 import UserMenuButton from '../buttons/UserMenuButton.jsx';
-import SearchDropdown from './SearchDropdown.jsx';
+import SearchDropdown from '../searchDropdown/SearchDropdown.jsx';
 
 export default function Header() {
   const classes = useStyles();
