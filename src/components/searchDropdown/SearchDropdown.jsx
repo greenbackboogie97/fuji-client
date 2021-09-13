@@ -36,7 +36,7 @@ export default function SearchDropdown(props) {
             onUserClick={(userID) => handleUserClick(userID)}
           />
         ) : (
-          <Typography>No results</Typography>
+          <Typography style={{ textAlign: 'center' }}>No results</Typography>
         ))}
     </div>
   );

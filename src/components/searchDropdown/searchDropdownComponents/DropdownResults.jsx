@@ -1,5 +1,5 @@
 import React from 'react';
-import { Avatar, makeStyles, Typography } from '@material-ui/core';
+import { Avatar, Divider, makeStyles, Typography } from '@material-ui/core';
 
 export default function DropdownResults(props) {
   const classes = useStyles();
@@ -7,8 +7,12 @@ export default function DropdownResults(props) {
   return (
     <>
       <div className={classes.root}>
-        <Typography>{`${props.length} results`}</Typography>
+        <Typography
+          variant="body1"
+          style={{ textAlign: 'center' }}
+        >{`${props.length} results`}</Typography>
       </div>
+      <Divider variant="middle" />
       {props.results.map((user) => {
         return (
           <div className={classes.user} key={user._id} onClick={() => props.onUserClick(user._id)}>
