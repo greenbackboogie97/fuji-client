@@ -18,6 +18,7 @@ export default function PostContent(props) {
 const useStyles = makeStyles((theme) => ({
   root: {
     padding: theme.spacing(3),
+    wordWrap: 'break-word',
   },
   content: {
     color: theme.palette.primary.contrastText,
