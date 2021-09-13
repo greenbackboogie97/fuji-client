@@ -42,6 +42,7 @@ const useStyles = makeStyles((theme) => ({
   root: {
     position: 'sticky',
     zIndex: 3,
+    top: 0,
   },
   btn: {
     background: theme.palette.primary.background.paper,
