@@ -40,7 +40,8 @@ export default function FeedControl() {
 
 const useStyles = makeStyles((theme) => ({
   root: {
-    marginBottom: theme.spacing(2),
+    position: 'sticky',
+    zIndex: 3,
   },
   btn: {
     background: theme.palette.primary.background.paper,

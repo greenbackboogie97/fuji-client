@@ -42,8 +42,8 @@ export default function NewPost() {
   };
 
   return (
-    <Grid item xs={12} sm={10} md={9} lg={8} xl={7}>
-      <Card className={classes.root}>
+    <Grid item xs={12} sm={10} md={9} lg={8} xl={7} className={classes.root}>
+      <Card className={classes.card}>
         <InputBase
           className={classes.input}
           value={value}
@@ -80,13 +80,16 @@ export default function NewPost() {
 
 const useStyles = makeStyles((theme) => ({
   root: {
+    marginBottom: theme.spacing(5),
+    marginTop: theme.spacing(2),
+  },
+  card: {
     boxShadow: 'unset',
     display: 'flex',
     flexDirection: 'column',
     background: theme.palette.primary.background.paper,
     border: `1px solid ${theme.palette.primary.semi}`,
     padding: theme.spacing(2),
-    marginBottom: theme.spacing(5),
   },
   input: {
     background: theme.palette.primary.background.default,
