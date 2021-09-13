@@ -38,6 +38,7 @@ const useStyles = makeStyles((theme) => ({
     height: 'calc(50vh - 102px)',
     padding: theme.spacing(2),
     overflow: 'auto',
+    wordWrap: 'break-word',
     '&::-webkit-scrollbar': {
       display: 'block',
       width: theme.spacing(1),
