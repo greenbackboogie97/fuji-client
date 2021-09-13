@@ -46,7 +46,6 @@ export default function ProfileIntro(props) {
           placeholder="bio goes here"
           className={classes.bioEdit}
           onChange={handleBioChange}
-          maxLength={32}
           onBlur={() => handleEditedValue('bio', bio)}
         />
       </Grid>
