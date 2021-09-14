@@ -36,8 +36,7 @@ export default function Home() {
   }, [currentFeed, newPostMemo, dispatch]);
 
   return (
-    (authStatus === 'pending' && <LoadingPage />) ||
-    (authStatus === 'logged' ? (
+    (authStatus === 'logged' && (
       <div className={classes.root}>
         <Header />
         <Feed>
@@ -52,9 +51,8 @@ export default function Home() {
         </Feed>
         <Footer />
       </div>
-    ) : (
-      <Redirect to="/signup" />
-    ))
+    )) ||
+    (authStatus === 'pending' ? <LoadingPage /> : <Redirect to="/signup" />)
   );
 }
 
