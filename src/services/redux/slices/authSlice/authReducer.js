@@ -72,7 +72,7 @@ const authReducer = createSlice({
       state.status = 'rejected';
     },
     [isCookie.fulfilled]: (state, action) => {
-      state.user = action.payload;
+      state.user = action.payload.user;
       state.status = 'logged';
     },
     [editUser.fulfilled]: (state, action) => {
