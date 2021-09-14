@@ -14,6 +14,9 @@ const FujiAPI = {
     signUp(payload) {
       return FujiAxios.post(`${this.resource}/signup`, payload);
     },
+    signOut() {
+      return FujiAxios.delete(`${this.resource}/signout`);
+    },
     isCookie() {
       return FujiAxios.get(`${this.resource}/cookie`);
     },

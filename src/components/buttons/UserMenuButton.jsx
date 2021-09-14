@@ -9,6 +9,7 @@ import { cleanChatState } from '../../services/redux/slices/chatSlice/chatReduce
 import { cleanFeedState } from '../../services/redux/slices/feedSlice/feedReducer';
 import { cleanProfileState } from '../../services/redux/slices/profileSlice/profileReducer';
 import { disconnectSocket } from '../../services/socket';
+import FujiAPI from '../../services/API/FujiAPI';
 
 export default function UserMenuButton() {
   const classes = useStyles();
@@ -28,8 +29,9 @@ export default function UserMenuButton() {
     history.push(`/profile/${authUser._id}`);
   };
 
-  const handleSignOutClick = () => {
+  const handleSignOutClick = async () => {
     handleClose();
+    await FujiAPI.users.signOut();
     dispatch(cleanAuthState());
     dispatch(cleanChatState());
     disconnectSocket();
