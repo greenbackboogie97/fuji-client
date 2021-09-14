@@ -19,6 +19,7 @@ import socket, {
   messageListenerAndUpdate,
 } from './services/socket';
 import { addMessage, updateContacts } from './services/redux/slices/chatSlice/chatReducer';
+import { isCookie } from './services/redux/slices/authSlice/authReducer';
 
 export default function App() {
   const dispatch = useDispatch();
@@ -28,6 +29,9 @@ export default function App() {
   const isLogged = useMemo(() => authStatus === 'logged', [authStatus]);
 
   useEffect(() => {
+    if (authStatus === 'idle') {
+      dispatch(isCookie());
+    }
     if (isLogged && !socket.connected) {
       connectSocket(authUser._id);
       contactsListenerAndUpdate((contacts) => dispatch(updateContacts(contacts)));
