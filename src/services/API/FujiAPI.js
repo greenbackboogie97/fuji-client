@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 const FujiAxios = axios.create({
-  baseURL: 'https://fujiserver.omerziger.com',
+  baseURL: 'http://fujiserver.omerziger.com',
   withCredentials: true,
 });
 
