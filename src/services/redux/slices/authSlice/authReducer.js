@@ -71,6 +71,9 @@ const authReducer = createSlice({
       state.error = action.error.message;
       state.status = 'rejected';
     },
+    [isCookie.pending]: (state) => {
+      state.status = 'pending';
+    },
     [isCookie.fulfilled]: (state, action) => {
       state.user = action.payload.user;
       state.status = 'logged';
