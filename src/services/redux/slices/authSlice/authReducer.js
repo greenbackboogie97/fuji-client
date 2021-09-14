@@ -21,6 +21,13 @@ export const signUp = createAsyncThunk('auth/signup', async (payload) => {
   return response.data.data;
 });
 
+export const isCookie = createAsyncThunk('auth/isCookie', async () => {
+  const response = await FujiAPI.users.isCookie().catch((error) => {
+    throw error.response.data;
+  });
+  return response.data;
+});
+
 export const editUser = createAsyncThunk('auth/editUser', async ({ key, value }) => {
   const response = await FujiAPI.users.editUser({ [key]: value }).catch((error) => {
     throw error.response.data;
@@ -34,6 +41,10 @@ const authReducer = createSlice({
   reducers: {
     // eslint-disable-next-line no-unused-vars
     cleanAuthState: (state) => (state = initialState),
+    setUser: (state, action) => {
+      state.user = action.payload;
+      state.status = 'logged';
+    },
   },
   extraReducers: {
     [signIn.pending]: (state) => {
@@ -59,6 +70,10 @@ const authReducer = createSlice({
     [signUp.rejected]: (state, action) => {
       state.error = action.error.message;
       state.status = 'rejected';
+    },
+    [isCookie.fulfilled]: (state, action) => {
+      state.user = action.payload;
+      state.status = 'logged';
     },
     [editUser.fulfilled]: (state, action) => {
       state.user[action.meta.arg.key] = action.meta.arg.value;
