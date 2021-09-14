@@ -8,13 +8,14 @@ import Feed from '../components/feed/Feed.jsx';
 import Footer from '../components/layout/Footer.jsx';
 import FeedControl from '../components/feed/feedComponents/FeedControl.jsx';
 import NewPost from '../components/feed/feedComponents/NewPost.jsx';
+import Post from '../components/post/Post.jsx';
+import LoadingPage from '../components/layout/LoadingPage.jsx';
 import {
   currentFeedSelector,
   feedPostsSelector,
   feedStatusSelector,
 } from '../services/redux/slices/feedSlice/feedSelectors';
 import { getPosts } from '../services/redux/slices/feedSlice/feedReducer';
-import Post from '../components/post/Post.jsx';
 import { newPostStatusSelector } from '../services/redux/slices/newPostSlice/newPostSelectors';
 import FriendsFeedPlaceholder from '../components/feed/feedComponents/FriendsFeedPlaceholder.jsx';
 import FeedPostsPlaceholder from '../components/feed/feedComponents/FeedPostsPlaceholder.jsx';
@@ -34,23 +35,26 @@ export default function Home() {
     dispatch(getPosts(currentFeed));
   }, [currentFeed, newPostMemo, dispatch]);
 
-  return authStatus === 'logged' ? (
-    <div className={classes.root}>
-      <Header />
-      <Feed>
-        <FeedControl />
-        <NewPost />
-        {(feedStatus === 'pending' && <FeedPostsPlaceholder />) ||
-          (!!feedPosts?.length ? (
-            feedPosts.map((post) => <Post key={post._id} postID={post._id} />)
-          ) : (
-            <FriendsFeedPlaceholder />
-          ))}
-      </Feed>
-      <Footer />
-    </div>
-  ) : (
-    <Redirect to="/signup" />
+  return (
+    (authStatus === 'pending' && <LoadingPage />) ||
+    (authStatus === 'logged' ? (
+      <div className={classes.root}>
+        <Header />
+        <Feed>
+          <FeedControl />
+          <NewPost />
+          {(feedStatus === 'pending' && <FeedPostsPlaceholder />) ||
+            (!!feedPosts?.length ? (
+              feedPosts.map((post) => <Post key={post._id} postID={post._id} />)
+            ) : (
+              <FriendsFeedPlaceholder />
+            ))}
+        </Feed>
+        <Footer />
+      </div>
+    ) : (
+      <Redirect to="/signup" />
+    ))
   );
 }
 

@@ -57,16 +57,28 @@ export default function SignUp() {
         <Typography className={classes.heading} variant="h5">
           Create your account
         </Typography>
-        <FormInput label="Email" onChange={handleEmailChange} value={form.email} />
-        <FormInput label="Username" onChange={handleUsernameChange} value={form.username} />
+        <FormInput
+          label="Email"
+          placeholder="abc@domain.com"
+          onChange={handleEmailChange}
+          value={form.email}
+        />
+        <FormInput
+          label="Display Name"
+          placeholder="Fuji User"
+          onChange={handleUsernameChange}
+          value={form.username}
+        />
         <FormInput
           label="Password"
+          placeholder="Q?f46537"
           type="password"
           onChange={handlePasswordChange}
           value={form.password}
         />
         <FormInput
           label="Confirm Password"
+          placeholder="Q?f46537"
           type="password"
           onChange={handleConfirmPasswordChange}
           value={form.confirmPassword}
