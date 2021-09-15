@@ -17,7 +17,6 @@ import {
 import Header from '../components/layout/Header.jsx';
 import Footer from '../components/layout/Footer.jsx';
 import ProfilePlaceholder from '../components/profile/ProfilePlaceholder.jsx';
-import LoadingPage from '../components/layout/LoadingPage.jsx';
 
 export default function Profile() {
   const classes = useStyles();
@@ -37,38 +36,35 @@ export default function Profile() {
     dispatch(getUser(id));
   }, [dispatch, id]);
 
-  return (
-    (authStatus === 'pending' && <LoadingPage />) ||
-    (authStatus === 'logged' ? (
-      <>
-        <Header />
-        <Grid container direction="column" className={classes.root}>
-          {profileStatus === 'success' ? (
-            <>
-              <ProfileIntro
-                profilePic={profileUser.profilePicture}
-                username={profileUser.name}
-                bio={profileUser.bio}
-                id={profileUser._id}
-              />
-              <ProfileBar id={id} />
-              <Feed>
-                {!!feedPosts.length ? (
-                  feedPosts.map((post) => <Post key={post._id} postID={post._id} />)
-                ) : (
-                  <Typography>{`${profileUser.name} haven't posted anything yet`}</Typography>
-                )}
-              </Feed>
-            </>
-          ) : (
-            <ProfilePlaceholder />
-          )}
-        </Grid>
-        <Footer />
-      </>
-    ) : (
-      <Redirect to="/signin" />
-    ))
+  return authStatus === 'logged' ? (
+    <>
+      <Header />
+      <Grid container direction="column" className={classes.root}>
+        {profileStatus === 'success' ? (
+          <>
+            <ProfileIntro
+              profilePic={profileUser.profilePicture}
+              username={profileUser.name}
+              bio={profileUser.bio}
+              id={profileUser._id}
+            />
+            <ProfileBar id={id} />
+            <Feed>
+              {!!feedPosts.length ? (
+                feedPosts.map((post) => <Post key={post._id} postID={post._id} />)
+              ) : (
+                <Typography>{`${profileUser.name} haven't posted anything yet`}</Typography>
+              )}
+            </Feed>
+          </>
+        ) : (
+          <ProfilePlaceholder />
+        )}
+      </Grid>
+      <Footer />
+    </>
+  ) : (
+    <Redirect to="/signin" />
   );
 }
 
