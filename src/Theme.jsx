@@ -62,9 +62,6 @@ function theme(mode) {
           '#root': {
             backgroundColor: mode === 'dark' ? '#0D1117' : '#F0F6FC',
           },
-          '& p': {
-            margin: 0,
-          },
         },
       },
       MuiButton: {

@@ -10,17 +10,9 @@ export default function PostContent(props) {
     <CardContent className={classes.root}>
       <Typography className={classes.content}>
         <pre
-          style={{
-            fontFamily: 'Inter',
-            whiteSpace: 'pre-line',
-            wordBreak: 'break-word',
-          }}
-        >
-          <div
-            style={{ margin: 0 }}
-            dangerouslySetInnerHTML={{ __html: utf8ToXML(props.content) }}
-          />
-        </pre>
+          style={{ fontFamily: 'Inter', whiteSpace: 'pre-line', wordBreak: 'break-word' }}
+          dangerouslySetInnerHTML={{ __html: utf8ToXML(props.content) }}
+        />
       </Typography>
       {!!props.media.length && <MediaCarousel media={props.media} />}
     </CardContent>
@@ -34,5 +26,8 @@ const useStyles = makeStyles((theme) => ({
   content: {
     color: theme.palette.primary.contrastText,
     marginBottom: theme.spacing(3),
+    '& p': {
+      margin: 0,
+    },
   },
 }));
