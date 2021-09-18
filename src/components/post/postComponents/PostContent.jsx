@@ -14,10 +14,13 @@ export default function PostContent(props) {
             fontFamily: 'Inter',
             whiteSpace: 'pre-line',
             wordBreak: 'break-word',
-            margin: 'unset',
           }}
-          dangerouslySetInnerHTML={{ __html: utf8ToXML(props.content) }}
-        />
+        >
+          <div
+            style={{ margin: 0 }}
+            dangerouslySetInnerHTML={{ __html: utf8ToXML(props.content) }}
+          />
+        </pre>
       </Typography>
       {!!props.media.length && <MediaCarousel media={props.media} />}
     </CardContent>
