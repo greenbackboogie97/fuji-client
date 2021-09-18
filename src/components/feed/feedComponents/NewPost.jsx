@@ -1,7 +1,7 @@
-/* eslint-disable no-unused-vars */
 import React, { useState } from 'react';
 import { Button, Card, CircularProgress, Grid, makeStyles } from '@material-ui/core';
 import { EditorState } from 'draft-js';
+import { stateToHTML } from 'draft-js-export-html';
 import { useDispatch, useSelector } from 'react-redux';
 import { publishPost } from '../../../services/redux/slices/newPostSlice/newPostReducer';
 import {
@@ -25,8 +25,22 @@ export default function NewPost() {
   const handleMediaOpen = () => setMediaOpen(true);
   const handleMediaClose = () => setMediaOpen(false);
 
+  const markupOptions = {
+    inlineStyles: {
+      RED: { style: { color: '#BC012D' } },
+      GREEN: { style: { color: '#08fcc3' } },
+      BLUE: { style: { color: '#187cc9' } },
+      ORANGE: { style: { color: '#f79245' } },
+      PURPLE: { style: { color: '#ba07a8' } },
+    },
+  };
   const handlePostClick = async () => {
-    await dispatch(publishPost({ content: editorState, media: newPostMedia }));
+    await dispatch(
+      publishPost({
+        content: stateToHTML(editorState.getCurrentContent(), markupOptions),
+        media: newPostMedia,
+      })
+    );
     setEditorState(EditorState.createEmpty());
   };
 
@@ -48,7 +62,7 @@ export default function NewPost() {
         <Media mediaID={authUserID} newPost={true} open={mediaOpen} onClose={handleMediaClose} />
         <Button
           color="primary"
-          disabled={editorState.length < 1 && newPostMedia.length < 1}
+          disabled={!editorState.getCurrentContent().hasText() && newPostMedia.length < 1}
           onClick={handlePostClick}
         >
           {newPostStatus !== 'loading' ? 'Post' : <CircularProgress color="inherit" size={21} />}
