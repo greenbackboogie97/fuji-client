@@ -10,7 +10,12 @@ export default function PostContent(props) {
     <CardContent className={classes.root}>
       <Typography className={classes.content}>
         <pre
-          style={{ fontFamily: 'Inter', whiteSpace: 'pre-line', wordBreak: 'break-word' }}
+          style={{
+            fontFamily: 'Inter',
+            whiteSpace: 'pre-line',
+            wordBreak: 'break-word',
+            margin: 'unset',
+          }}
           dangerouslySetInnerHTML={{ __html: utf8ToXML(props.content) }}
         />
       </Typography>
