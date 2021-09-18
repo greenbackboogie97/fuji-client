@@ -54,13 +54,8 @@ function theme(mode) {
     },
     spacing: 4,
     overrides: {
-      'public-DraftEditor-content': {
-        padding: 8,
-        fontFamily: 'Inter',
-        height: 120,
-        overflow: 'auto',
-        backgroundColor: mode === 'dark' ? '#0D1117' : '#F0F6FC',
-        color: mode === 'dark' ? '#F0F6FC' : '#0D1117',
+      '& p': {
+        margin: 0,
       },
       MuiCssBaseline: {
         '@global': {
