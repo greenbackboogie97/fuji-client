@@ -54,9 +54,6 @@ function theme(mode) {
     },
     spacing: 4,
     overrides: {
-      '& p': {
-        margin: 0,
-      },
       MuiCssBaseline: {
         '@global': {
           '*::-webkit-scrollbar': {
@@ -64,6 +61,9 @@ function theme(mode) {
           },
           '#root': {
             backgroundColor: mode === 'dark' ? '#0D1117' : '#F0F6FC',
+          },
+          '& p': {
+            margin: 0,
           },
         },
       },
