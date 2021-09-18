@@ -1,15 +1,7 @@
 /* eslint-disable no-unused-vars */
 import React, { useState } from 'react';
-import {
-  Button,
-  Card,
-  CircularProgress,
-  Grid,
-  IconButton,
-  InputBase,
-  makeStyles,
-} from '@material-ui/core';
-import { IoIosImages } from 'react-icons/io';
+import { Button, Card, CircularProgress, Grid, makeStyles } from '@material-ui/core';
+import { EditorState } from 'draft-js';
 import { useDispatch, useSelector } from 'react-redux';
 import { publishPost } from '../../../services/redux/slices/newPostSlice/newPostReducer';
 import {
@@ -19,44 +11,32 @@ import {
 import NewPostMediaPreview from './NewPostMediaPreview.jsx';
 import Media from '../../media/Media.jsx';
 import { authUserSelector } from '../../../services/redux/slices/authSlice/authSelectors';
+import TextEditor from '../../textEditor/TextEditor.jsx';
 
 export default function NewPost() {
   const classes = useStyles();
   const dispatch = useDispatch();
-  const [value, setValue] = useState('');
+  const [editorState, setEditorState] = useState(EditorState.createEmpty());
   const [mediaOpen, setMediaOpen] = useState(false);
   const authUserID = useSelector((state) => authUserSelector(state))._id;
   const newPostMedia = useSelector((state) => newPostMediaSelector(state));
   const newPostStatus = useSelector((state) => newPostStatusSelector(state));
 
-  const handleValueChange = (e) => {
-    setValue(e.target.value);
-  };
-
   const handleMediaOpen = () => setMediaOpen(true);
   const handleMediaClose = () => setMediaOpen(false);
 
   const handlePostClick = async () => {
-    await dispatch(publishPost({ content: value, media: newPostMedia }));
-    setValue('');
+    await dispatch(publishPost({ content: editorState, media: newPostMedia }));
+    setEditorState(EditorState.createEmpty());
   };
 
   return (
     <Grid item xs={12} sm={10} md={9} lg={8} xl={7} className={classes.root}>
       <Card className={classes.card}>
-        <InputBase
-          className={classes.input}
-          value={value}
-          onChange={handleValueChange}
-          type="text"
-          multiline={true}
-          maxRows={10}
-          placeholder="Share what's on your mind.."
-          endAdornment={
-            <IconButton className={classes.media} onClick={handleMediaOpen}>
-              <IoIosImages />
-            </IconButton>
-          }
+        <TextEditor
+          editorState={editorState}
+          setEditorState={setEditorState}
+          onMediaClick={handleMediaOpen}
         />
         {!!newPostMedia.length && (
           <Grid container>
@@ -68,7 +48,7 @@ export default function NewPost() {
         <Media mediaID={authUserID} newPost={true} open={mediaOpen} onClose={handleMediaClose} />
         <Button
           color="primary"
-          disabled={value.length < 1 && newPostMedia.length < 1}
+          disabled={editorState.length < 1 && newPostMedia.length < 1}
           onClick={handlePostClick}
         >
           {newPostStatus !== 'loading' ? 'Post' : <CircularProgress color="inherit" size={21} />}
