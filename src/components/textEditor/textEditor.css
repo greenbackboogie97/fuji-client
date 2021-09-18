@@ -1,0 +1,5 @@
+.public-DraftEditor-content {
+    padding: 8px;
+    height: 120px;
+    overflow: auto;
+}

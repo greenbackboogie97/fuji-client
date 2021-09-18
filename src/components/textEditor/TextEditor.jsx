@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { Editor, RichUtils } from 'draft-js';
 import { IconButton, makeStyles, Menu, MenuItem } from '@material-ui/core';
 import { BiBold, BiColorFill, BiItalic, BiUnderline, BiImages } from 'react-icons/bi';
+import './textEditor.css';
 
 export default function TextEditor(props) {
   const classes = useStyles();
