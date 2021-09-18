@@ -1,0 +1,6 @@
+.public-DraftEditor-content {
+    padding: 8px;
+    font-family: Inter;
+    height: 120px;
+    overflow: auto;
+}
