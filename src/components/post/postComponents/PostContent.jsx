@@ -9,9 +9,10 @@ export default function PostContent(props) {
   return (
     <CardContent className={classes.root}>
       <Typography className={classes.content}>
-        <pre style={{ fontFamily: 'Inter', whiteSpace: 'pre-line', wordBreak: 'break-word' }}>
-          {utf8ToXML(props.content)}
-        </pre>
+        <pre
+          style={{ fontFamily: 'Inter', whiteSpace: 'pre-line', wordBreak: 'break-word' }}
+          dangerouslySetInnerHTML={{ __html: utf8ToXML(props.content) }}
+        />
       </Typography>
       {!!props.media.length && <MediaCarousel media={props.media} />}
     </CardContent>
