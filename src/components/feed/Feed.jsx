@@ -7,6 +7,7 @@ export default function ProfileFeed({ children }) {
   return (
     <Grid
       container
+      fluid
       justifyContent="center"
       direction="column"
       maxWidth="xl"
