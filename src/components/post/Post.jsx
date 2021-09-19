@@ -109,5 +109,6 @@ const useStyles = makeStyles((theme) => ({
     border: `1px solid ${theme.palette.primary.semi}`,
     borderRadius: theme.shape.borderRadius,
     boxShadow: 'unset',
+    width: '100%',
   },
 }));
