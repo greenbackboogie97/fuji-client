@@ -51,7 +51,7 @@ export default function Post(props) {
 
   return (
     currentPost && (
-      <Grid item xs={12} sm={10} md={9} lg={8} xl={5}>
+      <Grid item xs={12} sm={10} md={9} lg={8} xl={5} style={{ width: '100%' }}>
         <Card className={classes.root}>
           <PostHeader
             avatar={currentPost.author.profilePicture}

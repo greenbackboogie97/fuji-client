@@ -11,7 +11,6 @@ export default function ProfileFeed({ children }) {
       justifyContent="center"
       alignItems="center"
       direction="column"
-      maxWidth="xl"
       className={classes.root}
     >
       {children}
