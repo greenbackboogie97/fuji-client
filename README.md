@@ -43,7 +43,7 @@
 <!-- ABOUT THE PROJECT -->
 ## About The Project
 
-[![Product Name Screen Shot][product-screenshot]](https://example.com)
+![Product Name Screen Shot][product-screenshot]
 
 Fuji client is the web app of the Fuji server. Fuji is a social network app that allows users to connect with each other, upload posts and media using the rich text editor and a personal cloud library, users can like and comment each others posts and talk privatley on the embedded live-chat feature.
 
