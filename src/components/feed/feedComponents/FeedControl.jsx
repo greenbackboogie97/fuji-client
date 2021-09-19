@@ -14,7 +14,7 @@ export default function FeedControl() {
   };
 
   return (
-    <Grid item xs={12} sm={10} md={9} lg={8} xl={7}>
+    <Grid item xs={12} sm={10} md={9} lg={8} xl={5} style={{ width: '100%' }}>
       <Button
         className={classes.btn}
         color="default"

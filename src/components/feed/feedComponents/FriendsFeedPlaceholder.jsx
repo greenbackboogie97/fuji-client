@@ -10,7 +10,7 @@ export default function NoDataPlaceholder() {
   const handleClick = () => dispatch(setFeed('community'));
 
   return (
-    <Grid item xs={12} sm={10} md={9} lg={8} xl={7}>
+    <Grid item xs={12} sm={10} md={9} lg={8} xl={5} style={{ width: '100%' }}>
       <Typography className={classes.cap} variant="caption">
         {`Your friends haven't posted anything yet`}
       </Typography>
