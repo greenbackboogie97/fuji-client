@@ -9,6 +9,7 @@ export default function ProfileFeed({ children }) {
       container
       fluid
       justifyContent="center"
+      alignItems="center"
       direction="column"
       maxWidth="xl"
       className={classes.root}
