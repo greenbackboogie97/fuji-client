@@ -45,7 +45,7 @@ export default function NewPost() {
   };
 
   return (
-    <Grid item xs={12} sm={10} md={9} lg={8} xl={7} className={classes.root}>
+    <Grid item xs={12} sm={10} md={9} lg={8} xl={5} className={classes.root}>
       <Card className={classes.card}>
         <TextEditor
           editorState={editorState}
@@ -76,6 +76,7 @@ const useStyles = makeStyles((theme) => ({
   root: {
     marginBottom: theme.spacing(5),
     marginTop: theme.spacing(2),
+    width: '100%',
   },
   card: {
     boxShadow: 'unset',
