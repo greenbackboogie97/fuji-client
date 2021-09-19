@@ -8,8 +8,8 @@ export default function ProfileFeed({ children }) {
     <Grid
       container
       justifyContent="center"
-      alignItems="center"
       direction="column"
+      maxWidth="xl"
       className={classes.root}
     >
       {children}
